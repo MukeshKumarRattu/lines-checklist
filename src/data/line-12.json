@@ -1,0 +1,238 @@
+{
+  "id": "line-12",
+  "name": "Line 12",
+  "title": "Line #12 CHECKLIST",
+  "revision": "Rev. Apr 2026 RW90/RWU90",
+  "headerFields": [
+    "DATE",
+    "TIME",
+    "PRODUCT"
+  ],
+  "items": [
+    {
+      "id": "l12-i1",
+      "text": "PRODUCTION LIST MATCHES CURRENT PRODUCT"
+    },
+    {
+      "id": "l12-i2",
+      "text": "SPOOLING ON TAKE-UP OK / CLOCK PROGRAMMED LENGTH (M)"
+    },
+    {
+      "id": "l12-i3",
+      "text": "LINE SPEED STABLE FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l12-i4",
+      "text": "GOOD COLOR OR WIRE / FEEL SMOOTH"
+    },
+    {
+      "id": "l12-i5",
+      "text": "CORRECT PRINT ON WIRE / EASY RO READ / READ IT"
+    },
+    {
+      "id": "l12-i6",
+      "text": "CORRECT STICKERS USED"
+    },
+    {
+      "id": "l12-i7",
+      "text": "PALLET CENTERED AND NOT OVERHANGING, CORRECT PALLETD USED (NOT BLOCK SKIDS)"
+    },
+    {
+      "id": "l12-i8",
+      "text": "FULL PALLETS LABELED CORRECTLY, LIGHT WRAP"
+    },
+    {
+      "id": "l12-i9",
+      "text": "TAKE-UP AREA CLEAN AND ORGANISED"
+    },
+    {
+      "id": "l12-i10",
+      "text": "NO BROKEN/POORLY MADE SPOOLS AROUND SPOOL MAKER"
+    },
+    {
+      "id": "l12-i11",
+      "text": "TESTS LOGGED PROPERLY - MAX 1/2 HOUR BETWEEN TESTS"
+    },
+    {
+      "id": "l12-i12",
+      "text": "SHUTDOWNS AND CLEANOUTS LOGGED"
+    },
+    {
+      "id": "l12-i13",
+      "text": "# OF TURNS & # OF WEIGHTS ON ACCUMULATOR",
+      "needsValue": true
+    },
+    {
+      "id": "l12-i14",
+      "text": "ALARM FOR ACCUMULATOR IS WORKING / CRASH PLATE OR SPRINGS IN PLACE"
+    },
+    {
+      "id": "l12-i15",
+      "text": "LUMP DETECTOR 'ON,' TEST IT, CLEAN ONCE PER WEEK"
+    },
+    {
+      "id": "l12-i16",
+      "text": "LUMP DETECTOR TOLERANCE #"
+    },
+    {
+      "id": "l12-i17",
+      "text": "SPARK TESTER 'ON ' (TEST) / LOAD"
+    },
+    {
+      "id": "l12-i18",
+      "text": "CLEAN SPARK TESTER DUST"
+    },
+    {
+      "id": "l12-i19",
+      "text": "WIRE ON CAPSTAN OK, WIRE NOT LOOSE"
+    },
+    {
+      "id": "l12-i20",
+      "text": "SUFFICIENT WATER IN TROUGH, WIRE COVERED"
+    },
+    {
+      "id": "l12-i21",
+      "text": "WATER COMING OUT OF ALL SPIGOTS"
+    },
+    {
+      "id": "l12-i22",
+      "text": "WATER LEVEL IN RESERVOIR"
+    },
+    {
+      "id": "l12-i23",
+      "text": "AISLE CLEAR - NO WATER ON FLOOR"
+    },
+    {
+      "id": "l12-i24",
+      "text": "EXTRUDER SPEED"
+    },
+    {
+      "id": "l12-i25",
+      "text": "CAPSTAN SPEED"
+    },
+    {
+      "id": "l12-i26",
+      "text": "NORMAL RUN (%)",
+      "needsValue": true
+    },
+    {
+      "id": "l12-i27",
+      "text": "TEMPERATURE FOR INSULATION  EXTRUDER AT SET POINTS, INDICATE LOW ZONE"
+    },
+    {
+      "id": "l12-i28",
+      "text": "EXTRUDER HEAD LEAKS CLEARED OFF IF ANY"
+    },
+    {
+      "id": "l12-i29",
+      "text": "WIRE NOT VIBRATING, SCRACHED OR BOUNCING BEFORE HEAD, WARM-HOT"
+    },
+    {
+      "id": "l12-i30",
+      "text": "SPEW BUCKET EMPTY- WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l12-i31",
+      "text": "ODAC LENSES CLEAN (TURN OFF AND CLEAN)"
+    },
+    {
+      "id": "l12-i32",
+      "text": "ODAC DIAMETER SET POINT"
+    },
+    {
+      "id": "l12-i33",
+      "text": "ODAC ALARM 'ON' /TOLERANCE NOT TOO LARGE"
+    },
+    {
+      "id": "l12-i34",
+      "text": "INSULATION HOPPER LEVEL / CORRECT PE BEING USED"
+    },
+    {
+      "id": "l12-i35",
+      "text": "CATALYST FEEDER LEVEL"
+    },
+    {
+      "id": "l12-i36",
+      "text": "CATALYST ON/ INDICATE SPEED"
+    },
+    {
+      "id": "l12-i37",
+      "text": "UV ADDITIVE BEING USED  / UV LEVEL"
+    },
+    {
+      "id": "l12-i38",
+      "text": "FEEDER 'ON' / SPEED % / LEVEL OK",
+      "needsValue": true
+    },
+    {
+      "id": "l12-i39",
+      "text": "CORRECT MASTERBATCH MIXTURE NEXT TO LINE-OTHERS PUT AWAY"
+    },
+    {
+      "id": "l12-i40",
+      "text": "NEXT G.U. SET UP PROPERLY, GOOD TENSION"
+    },
+    {
+      "id": "l12-i41",
+      "text": "GIVE-UPS ARE IN GOOD CONDITION, NO REPAIR NEEDED"
+    },
+    {
+      "id": "l12-i42",
+      "text": "W.D. # IN USE WITH LINE 12"
+    },
+    {
+      "id": "l12-i43",
+      "text": "WIRE DRAWER OK / NOT NOISY"
+    },
+    {
+      "id": "l12-i44",
+      "text": "SOLUTION LEVEL IN DIE POT / SOLUTION ON FLOOR YES / NO"
+    },
+    {
+      "id": "l12-i45",
+      "text": "ROD ALARM SECURED WITH COPPER (2 TURNS)"
+    },
+    {
+      "id": "l12-i46",
+      "text": "ROD JOINT MADE, STRAPS CUT, INSIDE END PULLED OUT, NO CROSS"
+    },
+    {
+      "id": "l12-i47",
+      "text": "SOLUTION 'ON' IN WIRE DRAWER, AIR 'ON'"
+    },
+    {
+      "id": "l12-i48",
+      "text": "WATER LEVEL IN ANNEALER OK / ANNEALER AMPS STEADY"
+    },
+    {
+      "id": "l12-i49",
+      "text": "WIRE NOT ARCING IN ANNEALER / WIRE BREAK SWITCH ON WIRE"
+    },
+    {
+      "id": "l12-i50",
+      "text": "# OF DANCER WEIGHT'S, # OF TURNS ON DANCER",
+      "needsValue": true
+    },
+    {
+      "id": "l12-i51",
+      "text": "BELTS ON ANNEALER OK"
+    },
+    {
+      "id": "l12-i52",
+      "text": "PULLEYS ON ANNEALER AND DANCER OK"
+    },
+    {
+      "id": "l12-i53",
+      "text": "ANNEALER AMPS STEADY"
+    },
+    {
+      "id": "l12-i54",
+      "text": "SAFETY GUARD CHECKLIST COMPELTED"
+    },
+    {
+      "id": "l12-i55",
+      "text": "IF THERE IS AN ALERT ON YOUR PRINTER, PLEASE TELL YOUR SUPERVISOR"
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "id": "line-4",
+  "name": "Line 4",
+  "title": "Line #4 CHECKLIST",
+  "revision": "Rev. Jun2025",
+  "headerFields": [
+    "DATE",
+    "TIME",
+    "PRODUCT"
+  ],
+  "items": [
+    {
+      "id": "l4-i1",
+      "text": "SPOOLING ON TAKE-UP OK / LENGTH ON CLOCK"
+    },
+    {
+      "id": "l4-i2",
+      "text": "GOOD COLOR OF WIRE / WIRE FEELS SMOOTH"
+    },
+    {
+      "id": "l4-i3",
+      "text": "CORRECT PRINT ON WIRE / EASY TO READ / READ IT"
+    },
+    {
+      "id": "l4-i4",
+      "text": "CORRECT LABELS & PRODUCTION BOOK MATCHES CURRENT PRODUCT"
+    },
+    {
+      "id": "l4-i5",
+      "text": "SPOOL FLANGES NOT DAMAGED AT START OF SPOOL"
+    },
+    {
+      "id": "l4-i6",
+      "text": "PALLET CENTERED & NOT OVERHANGING, CORRECT PALLETS USED"
+    },
+    {
+      "id": "l4-i7",
+      "text": "NO DAMAGED/POORLY MADE SPOOLS AROUND SPOOL MAKER"
+    },
+    {
+      "id": "l4-i8",
+      "text": "FULL PALLETS LABELED CORRECTLY, LIGHT WRAP"
+    },
+    {
+      "id": "l4-i9",
+      "text": "LOG STEEL REEL # IN LOG BOOK FOR R/C'S, S.U.'S LOGGED"
+    },
+    {
+      "id": "l4-i10",
+      "text": "NEXT TAKE UP REEL SET-UP"
+    },
+    {
+      "id": "l4-i11",
+      "text": "TAKE UP AREA CLEAN & ORGANISED"
+    },
+    {
+      "id": "l4-i12",
+      "text": "TESTS LOGGED PROPERLY - MAX 1/2 HOUR BETWEEN TESTS"
+    },
+    {
+      "id": "l4-i13",
+      "text": "SHUTDOWNS AND CLEANOUTS LOGGED"
+    },
+    {
+      "id": "l4-i14",
+      "text": "ACCUMULATOR ALARM 'ON' / # OF TURNS",
+      "needsValue": true
+    },
+    {
+      "id": "l4-i15",
+      "text": "ACCUMULATOR CRASH PLATE IN PLACE"
+    },
+    {
+      "id": "l4-i16",
+      "text": "WEIGHTS NOT HANGING BELOW BOTTOM SET ON ACCUMULATOR"
+    },
+    {
+      "id": "l4-i17",
+      "text": "CAPSTAN GEAR RATIO"
+    },
+    {
+      "id": "l4-i18",
+      "text": "SPARK TESTER 'ON' / LOAD %",
+      "needsValue": true
+    },
+    {
+      "id": "l4-i19",
+      "text": "WIRE ON CAPSTAN IS OK / GUARD 'ON'"
+    },
+    {
+      "id": "l4-i20",
+      "text": "LUMP DETECTOR \"ON\" /TOLERANCE # / TEST"
+    },
+    {
+      "id": "l4-i21",
+      "text": "NYLON HOPPER ALARM"
+    },
+    {
+      "id": "l4-i22",
+      "text": "AIR WIPE \"ON\" BEFORE  PRINTER"
+    },
+    {
+      "id": "l4-i23",
+      "text": "WATER LEVEL IN RESERVOIR"
+    },
+    {
+      "id": "l4-i24",
+      "text": "WATER LEVEL IN TROUGH'S OK, WIRE COVERED"
+    },
+    {
+      "id": "l4-i25",
+      "text": "COOLING LINES IN TROUGH CLEAN (ONCE PER SHIFT)"
+    },
+    {
+      "id": "l4-i26",
+      "text": "WATER COMING OUT OF ALL SPIGOTS"
+    },
+    {
+      "id": "l4-i27",
+      "text": "NYLON TEMP 'OK' (NYCOA/NYLENE), VACUUM 'ON'"
+    },
+    {
+      "id": "l4-i28",
+      "text": "ODAC LENSES CLEAN (DIAMETER CONTROL)"
+    },
+    {
+      "id": "l4-i29",
+      "text": "ODAC DIAMETER SET POINT"
+    },
+    {
+      "id": "l4-i30",
+      "text": "ODAC ALARM 'ON' /TOLERANCE NOT TOO LARGE"
+    },
+    {
+      "id": "l4-i31",
+      "text": "CLEAR OFF LEAK'S ON NYLON HEAD, WIRE MUST BE CENTERED"
+    },
+    {
+      "id": "l4-i32",
+      "text": "TEMP. FOR PVC EXTR. AT SET POINTS, INDICATE LOW ZONE"
+    },
+    {
+      "id": "l4-i33",
+      "text": "WIRE NOT VIBRATING, SCRATCHED OR BOUNCING BEFORE HEAD, WARM-HOT"
+    },
+    {
+      "id": "l4-i34",
+      "text": "BRAKE ON FLYWHEEL FREE MOVING"
+    },
+    {
+      "id": "l4-i35",
+      "text": "\"TENSION\" ODC BEING USED? WHAT SPEED?",
+      "needsValue": true
+    },
+    {
+      "id": "l4-i36",
+      "text": "EXTRUDER SPEED"
+    },
+    {
+      "id": "l4-i37",
+      "text": "NYLON EXTRUDER SPEED"
+    },
+    {
+      "id": "l4-i38",
+      "text": "LINE SPEED STABLE / CAPSTAN SPEED FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l4-i39",
+      "text": "SPEW BUCKET EMPTY- WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l4-i40",
+      "text": "FEEDER 'ON' / INDICATE SPEED / ENOUGH MASTER BATCH"
+    },
+    {
+      "id": "l4-i41",
+      "text": "PVC HOPPER LEVEL / ALARM (TEST) / CORRECT COMPOUND BEING USED"
+    },
+    {
+      "id": "l4-i42",
+      "text": "NYLON HOPPER LEVEL / ALARM (TEST)"
+    },
+    {
+      "id": "l4-i43",
+      "text": "NYCOA NYLON BEING USED IF MAKING T90"
+    },
+    {
+      "id": "l4-i44",
+      "text": "NEXT G.U. SET UP PROPERLY, GOOD TENSION"
+    },
+    {
+      "id": "l4-i45",
+      "text": "CHECK IF WELD IS GOOD"
+    },
+    {
+      "id": "l4-i46",
+      "text": "CHECK FOR TAPES ON G.U., INSIDE END TAPED UP"
+    },
+    {
+      "id": "l4-i47",
+      "text": "COPPER DUST CLEANED FROM WIRE STRAIGHTENER WITH AIR (ONCE PER SHIFT)"
+    },
+    {
+      "id": "l4-i48",
+      "text": "ROD ALARM SECURED WITH COPPER (2 TURNS)"
+    },
+    {
+      "id": "l4-i49",
+      "text": "ROD JOINT MADE, STRAPS CUT, INSIDE END PULLED OUT, NO CROSS"
+    },
+    {
+      "id": "l4-i50",
+      "text": "COPPER ROD ALARM 'ON'"
+    },
+    {
+      "id": "l4-i51",
+      "text": "SOLUTION 'ON' IN WIRE DRAWER, AIR 'ON'"
+    },
+    {
+      "id": "l4-i52",
+      "text": "HENIUM BUSHING IN ANNEALER IS CLEAR"
+    },
+    {
+      "id": "l4-i53",
+      "text": "WATER LEVEL IN ANNEALER OK / ANNEALER AMPS STEADY"
+    },
+    {
+      "id": "l4-i54",
+      "text": "WIRE NOT ARCING IN ANNEALER / WIRE BREAK SWITCH ON WIRE"
+    },
+    {
+      "id": "l4-i55",
+      "text": "WIRE DRAWER & ANNEALER SAFETY GUARDS 'ON'"
+    },
+    {
+      "id": "l4-i56",
+      "text": "SAFETY GUARD CHECKLIST COMPLETED"
+    },
+    {
+      "id": "l4-i57",
+      "text": "# OF DANCER WEIGHT'S, # OF TURNS ON ACCUMULATOR",
+      "needsValue": true
+    },
+    {
+      "id": "l4-i58",
+      "text": "W.D. LINE CONNECT YES/NO"
+    },
+    {
+      "id": "l4-i59",
+      "text": "CHECK LIGHT FOR WD #4 OIL PRESSURE (IF WD IS IN USE). IF LIGHT IS 'ON' CALL THE SUPERVISOR IMMEDIATELY."
+    },
+    {
+      "id": "l4-i60",
+      "text": "PUT ABSORBENT ON ANY OIL SPILL AND DON'T PICK IT UP"
+    },
+    {
+      "id": "l4-i61",
+      "text": "SYNCRO DOWN-COILER AREA MUST BE CLEAN  MAKE SURE NO WIRE OR ANY OTHER DEBRIS THAT MIGHT JAM THE TURN TABLE"
+    },
+    {
+      "id": "l4-i62",
+      "text": "IF THERE IS AN ALERT ON YOUR PRINTER, TELL YOUR SUPERVISOR"
+    },
+    {
+      "id": "l4-i63",
+      "text": "CORRECT MASTERBATCH MIXTURE NEXT TO LINE-OTHERS PUT AWAY"
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "id": "line-7",
+  "name": "Line 7",
+  "title": "Line #7 CHECKLIST",
+  "revision": "Rev. Jun 2025",
+  "headerFields": [
+    "DATE",
+    "TIME",
+    "PRODUCT"
+  ],
+  "items": [
+    {
+      "id": "l7-i1",
+      "text": "SPOOLING ON TAKE-UP, GOOD PRINT READ IT"
+    },
+    {
+      "id": "l7-i2",
+      "text": "CLOCK PROGRAMED LENGTH (M)"
+    },
+    {
+      "id": "l7-i3",
+      "text": "CORRECT PRODUCT SELECTION @ T.U."
+    },
+    {
+      "id": "l7-i4",
+      "text": "CORRECT PRODUCT I.D. STICKERS"
+    },
+    {
+      "id": "l7-i5",
+      "text": "PALLET CENTERED AND NOT OVER HANGING"
+    },
+    {
+      "id": "l7-i6",
+      "text": "SPOOL FLANGES NOT DAMAGED AT START OF SPOOL"
+    },
+    {
+      "id": "l7-i7",
+      "text": "TESTS LOGGED PROPERLY - MAX 1/2 HOUR BETWEEN TESTS"
+    },
+    {
+      "id": "l7-i8",
+      "text": "TAKE-UP OPERATOR'S AREA IS CLEAN"
+    },
+    {
+      "id": "l7-i9",
+      "text": "TOWER SWITCHES OK / CRASH PLATE IN PLACE"
+    },
+    {
+      "id": "l7-i10",
+      "text": "WEIGHTS NOT HANGING BELOW BOTTOM SET ON ACCUMULATOR"
+    },
+    {
+      "id": "l7-i11",
+      "text": "JACKET SPARK TESTER 'ON'/ LOAD #"
+    },
+    {
+      "id": "l7-i12",
+      "text": "CONDUCTOR SPARK TESTER 'ON'/ LOAD #"
+    },
+    {
+      "id": "l7-i13",
+      "text": "LUMP DETECTOR  'ON'/  TEST"
+    },
+    {
+      "id": "l7-i14",
+      "text": "ODAC LUMP DETECTOR TOLERANCE #"
+    },
+    {
+      "id": "l7-i15",
+      "text": "ODAC LUMP DETECTOR LENSES CLEAN"
+    },
+    {
+      "id": "l7-i16",
+      "text": "AIR WIPE 'ON'  & WIRE CENTERED"
+    },
+    {
+      "id": "l7-i17",
+      "text": "PRINTER HEAD COVER INPLACE"
+    },
+    {
+      "id": "l7-i18",
+      "text": "SUFFICIENT WATER IN TROUGH, WIRE COVERED"
+    },
+    {
+      "id": "l7-i19",
+      "text": "WATER COMING OUT OF ALL SPIGOTS"
+    },
+    {
+      "id": "l7-i20",
+      "text": "COOLING LINES IN TROUGH CLEAN (ONCE PER SHIFT)"
+    },
+    {
+      "id": "l7-i21",
+      "text": "WATER LEVEL IN THE RESERVOIR"
+    },
+    {
+      "id": "l7-i22",
+      "text": "DRAIN O.K., NO WATER ON THE FLOOR"
+    },
+    {
+      "id": "l7-i23",
+      "text": "CONDUCTORS ON ALL PULLEYS"
+    },
+    {
+      "id": "l7-i24",
+      "text": "CONDUCTORS O.K. IN ROPE / NO CROSSES / GRND OK"
+    },
+    {
+      "id": "l7-i25",
+      "text": "CONDITION OF OSCILATOR ROPE / OK"
+    },
+    {
+      "id": "l7-i26",
+      "text": "NOSE CONE NOT DAMAGING WIRES"
+    },
+    {
+      "id": "l7-i27",
+      "text": "PVC TEMP AT SETPOINT - INDICATE LOW ZONES IF NOT"
+    },
+    {
+      "id": "l7-i28",
+      "text": "AMPS ON O.C.P. OK"
+    },
+    {
+      "id": "l7-i29",
+      "text": "COOLING FANS MUST BE 'ON' WHEN EXTRUDER IS RUNING UNDER 40%",
+      "needsValue": true
+    },
+    {
+      "id": "l7-i30",
+      "text": "NYLON TEMP OK (NYCOA/NYLENE) - INDICATE LOW ZONES IF NOT"
+    },
+    {
+      "id": "l7-i31",
+      "text": "LINE SPEED FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l7-i32",
+      "text": "ODAC SET POINT"
+    },
+    {
+      "id": "l7-i33",
+      "text": "SLOW RUN SPEED SETTING %",
+      "needsValue": true
+    },
+    {
+      "id": "l7-i34",
+      "text": "CARDBOARD BEHIND HEAD, PVC LEAK CLEARED"
+    },
+    {
+      "id": "l7-i35",
+      "text": "COPPER NOT SCRATCHED BEFORE HEAD"
+    },
+    {
+      "id": "l7-i36",
+      "text": "SPEW BUCKET EMPTY - WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l7-i37",
+      "text": "VACCUM PRESSURE \"OK\" - JACKET NOT STICKING / LOOSE"
+    },
+    {
+      "id": "l7-i38",
+      "text": "PVC HOPPER LEVEL OK, CORRECT COMPOUND BEING USED"
+    },
+    {
+      "id": "l7-i39",
+      "text": "NYLON HOPPER LEVEL OK, ALARM ON"
+    },
+    {
+      "id": "l7-i40",
+      "text": "FEEDER 'ON' / SPEED"
+    },
+    {
+      "id": "l7-i41",
+      "text": "WIRE \"OK' ON O/D CAPSTAN"
+    },
+    {
+      "id": "l7-i42",
+      "text": "CLEAN SPARK TESTER DUST"
+    },
+    {
+      "id": "l7-i43",
+      "text": "BRAKE ON GIVE-UP FREE MOVING"
+    },
+    {
+      "id": "l7-i44",
+      "text": "NEW GIVE-UPS SET UP, CRIMPS FILED/WIRE WELDED"
+    },
+    {
+      "id": "l7-i45",
+      "text": "GIVE-UPS ARE IN GOOD CONDITION, NO REPAIR NEEDED"
+    },
+    {
+      "id": "l7-i46",
+      "text": "EXTRA CRIMP'S MADE & FILED"
+    },
+    {
+      "id": "l7-i47",
+      "text": "ANNEALER AMPS NOT FLUCTURING"
+    },
+    {
+      "id": "l7-i48",
+      "text": "# ON TURNS ON DANCER / # OF WEIGHTS ON DANCER",
+      "needsValue": true
+    },
+    {
+      "id": "l7-i49",
+      "text": "AIR WIPE 'ON'  ANNEALER NOT SMOKEY"
+    },
+    {
+      "id": "l7-i50",
+      "text": "WATER LEVEL IN ANN./ WATER COMING OUT OF PIPE"
+    },
+    {
+      "id": "l7-i51",
+      "text": "SAFETY GUARD CHECKLIST  COMPLETED"
+    },
+    {
+      "id": "l7-i52",
+      "text": "WIRE NOT ARCING IN ANNEALER (FRONT/BACK)"
+    },
+    {
+      "id": "l7-i53",
+      "text": "BELT & CHAINS IN GOOD CONDITION"
+    },
+    {
+      "id": "l7-i54",
+      "text": "# OF TURNS ON OUTSIDE CAPSTAN",
+      "needsValue": true
+    },
+    {
+      "id": "l7-i55",
+      "text": "DANCER NOT BOUNCING / ALL BUSHINGS CLEAN"
+    },
+    {
+      "id": "l7-i56",
+      "text": "WIRE BREAK ON WIRE"
+    },
+    {
+      "id": "l7-i57",
+      "text": "W.D. OK - NOT TOO NOISY, SOLUTION ON FLOOR?",
+      "needsValue": true
+    },
+    {
+      "id": "l7-i58",
+      "text": "SOLUTION LEVEL IN DIE POD"
+    },
+    {
+      "id": "l7-i59",
+      "text": "ROD ALARM SECURED WITH COPPER (2 TURNS)"
+    },
+    {
+      "id": "l7-i60",
+      "text": "ROD ALARM WORKING, TEST"
+    },
+    {
+      "id": "l7-i61",
+      "text": "ROD JOINT MADE, STRAPS CUT, NOT CROSSED"
+    },
+    {
+      "id": "l7-i62",
+      "text": "W.D. LINE CONNECT (TO WHICH W.D. ON TOUCH SCREEN?)"
+    },
+    {
+      "id": "l7-i63",
+      "text": "SHUT DOWNS AND CLEANOUTS LOGGED"
+    },
+    {
+      "id": "l7-i64",
+      "text": "CORRECT MASTERBATCH MIXTURE NEXT TO LINE"
+    },
+    {
+      "id": "l7-i65",
+      "text": "NO SPLIT IN JACKET - CHECK"
+    },
+    {
+      "id": "l7-i66",
+      "text": "R/C'S LOGGED PROPERLY - ALL INFO ON CARDS"
+    },
+    {
+      "id": "l7-i67",
+      "text": "NO BROKEN / POORLY MADE SPOOLS AROUND SPOOL MAKER"
+    },
+    {
+      "id": "l7-i68",
+      "text": "CARDS FOR R.L. & LUMPS FILLED OUT - NO EXTRA CARDS AROUND"
+    },
+    {
+      "id": "l7-i69",
+      "text": "PUT ABSORBENT ON ANY OIL SPILL AND DON'T PICK IT UP"
+    }
+  ]
+}

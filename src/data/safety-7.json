@@ -1,0 +1,141 @@
+{
+  "id": "safety-7",
+  "name": "Line 7",
+  "kind": "safety",
+  "title": "LINE #7 SAFETY GUARDS CHECKLIST",
+  "revision": "MAY 25 2016",
+  "note": "To be completed 2x per shift 6 hours apart",
+  "legend": [
+    "Good, In place or Bolted",
+    "X — Broken or Needs repair",
+    "R — Replaced cause previous operator did not install",
+    "M — Missing",
+    "All safety guards must be BOLTED in place at all time"
+  ],
+  "headerFields": [
+    "DATE",
+    "TIME"
+  ],
+  "items": [
+    {
+      "id": "s7-i1",
+      "text": "Accumulator Cage",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s7-i2",
+      "text": "36\" take up left side belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i3",
+      "text": "36\" take up right side belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i4",
+      "text": "Pulley before Accumulator Guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i5",
+      "text": "Capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i6",
+      "text": "Capstan belt guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s7-i7",
+      "text": "Small return pulley guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i8",
+      "text": "Big return pulley cover",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s7-i9",
+      "text": "Oscillator wheels guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s7-i10",
+      "text": "Oscillator drive shafts front guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i11",
+      "text": "Pulley after Oscillator guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i12",
+      "text": "PVC extruder belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i13",
+      "text": "Nylon extruder left & right side guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i14",
+      "text": "Chain between wire drawer & Annealer Guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i15",
+      "text": "Annealer back side guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i16",
+      "text": "Annealer dancer guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i17",
+      "text": "Annealer water splash guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s7-i18",
+      "text": "Annealer top capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i19",
+      "text": "Annealer Side capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i20",
+      "text": "Annealer top side capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i21",
+      "text": "Coupling between wire drawer & gear box guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i22",
+      "text": "Wire drawer motor belts back side guards (2x)",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i23",
+      "text": "Wire drawer motor belts cover",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s7-i24",
+      "text": "Infractions by previous shift",
+      "needsValue": true
+    }
+  ]
+}

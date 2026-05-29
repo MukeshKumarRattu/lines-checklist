@@ -1,0 +1,146 @@
+{
+  "id": "safety-8",
+  "name": "Line 8",
+  "kind": "safety",
+  "title": "LINE #8 SAFETY GUARDS CHECKLIST",
+  "revision": "MAY 30 2016",
+  "note": "To be completed 2x per shift 6 hours apart",
+  "legend": [
+    "Good, In place or Bolted",
+    "X — Broken or Needs repair",
+    "R — Replaced cause previous operator did not install",
+    "M — Missing",
+    "All safety guards must be BOLTED in place at all time"
+  ],
+  "headerFields": [
+    "DATE",
+    "TIME"
+  ],
+  "items": [
+    {
+      "id": "s8-i1",
+      "text": "36\" take up left side belts guards",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i2",
+      "text": "36\" take up right side belts guards",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i3",
+      "text": "36\" take up dancer guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s8-i4",
+      "text": "Accumulator cage (Front and Back)",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i5",
+      "text": "36\" travers motor coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i6",
+      "text": "Return pulley after capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i7",
+      "text": "Back capstan cover",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s8-i8",
+      "text": "Front capstan cover",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s8-i9",
+      "text": "Pulley before PVC extruder guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i10",
+      "text": "PVC extruder belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i11",
+      "text": "Annealer Capstan inside water tank belts guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s8-i12",
+      "text": "Vertical drive shaft guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i13",
+      "text": "Drive belt from wire drawer to gear box guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i14",
+      "text": "Drive belt from gear box to vertical drive guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i15",
+      "text": "Wire drawer gear box coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i16",
+      "text": "Wire drawer motor coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i17",
+      "text": "Wire drawer outside capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i18",
+      "text": "Air cylinder on top of die pot guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i19",
+      "text": "Barrier between rod & wire drawer motor",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i20",
+      "text": "Annealer top right side capstan cover",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s8-i21",
+      "text": "Annealer top right side capstan belt cover",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i22",
+      "text": "Annealer top left side capstan front doors",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s8-i23",
+      "text": "Annealer top left side capstan belt cover",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i24",
+      "text": "Horizontal drive shafts covers (4x)",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s8-i25",
+      "text": "Infractions by previous shift",
+      "needsValue": true
+    }
+  ]
+}

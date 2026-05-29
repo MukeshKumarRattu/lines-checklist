@@ -1,0 +1,224 @@
+{
+  "id": "line-2",
+  "name": "Line 2",
+  "title": "Line #2 CHECKLIST",
+  "revision": "Rev. Dec 2023",
+  "headerFields": [
+    "DATE",
+    "TIME"
+  ],
+  "items": [
+    {
+      "id": "l2-i1",
+      "text": "TAKE UP AREA CLEAN"
+    },
+    {
+      "id": "l2-i2",
+      "text": "LOG BOOK FILLED OUT PROPERLY & ALL TEST DONE"
+    },
+    {
+      "id": "l2-i3",
+      "text": "SPOOLING ON TAKE UP GOOD"
+    },
+    {
+      "id": "l2-i4",
+      "text": "WIRE FEELS GOOD, GOOD COLOR"
+    },
+    {
+      "id": "l2-i5",
+      "text": "BELTS ON TAKE UP IN GOOD CONDITION"
+    },
+    {
+      "id": "l2-i6",
+      "text": "EXTRA FAULT CARDS MADE"
+    },
+    {
+      "id": "l2-i7",
+      "text": "# OF WEIGHTS ON ACCUMULATOR",
+      "needsValue": true
+    },
+    {
+      "id": "l2-i8",
+      "text": "WEIGHTS NOT HANGING BELOW BOTTOM SET ON ACCUMULATOR"
+    },
+    {
+      "id": "l2-i9",
+      "text": "ACCUMULATOR CRASH PLATE IN PLACE"
+    },
+    {
+      "id": "l2-i10",
+      "text": "WIRES ON CAPSTAN OK + 4 TURNS ON"
+    },
+    {
+      "id": "l2-i11",
+      "text": "LUMP DETECTOR 'ON' - TEST"
+    },
+    {
+      "id": "l2-i12",
+      "text": "LUMP DETECTOR TOLERANCE#"
+    },
+    {
+      "id": "l2-i13",
+      "text": "SPARK TESTER 'ON' / SPARK TESTER LOAD"
+    },
+    {
+      "id": "l2-i14",
+      "text": "WIRE CENTERED IN AIRWIPE, AIR \"ON\""
+    },
+    {
+      "id": "l2-i15",
+      "text": "COOLING LINES IN TROUGH CLEAN (ONCE PER SHIFT)"
+    },
+    {
+      "id": "l2-i16",
+      "text": "DAMS IN TROUGH, ENOUGH WATER +  PROPER LEVEL IN TANK"
+    },
+    {
+      "id": "l2-i17",
+      "text": "WATER COMING OUT OF ALL SPIGOTS"
+    },
+    {
+      "id": "l2-i18",
+      "text": "AISLE CLEAR / ANY WATER ON FLOOR IF SO FIX LEAK"
+    },
+    {
+      "id": "l2-i19",
+      "text": "CLEAN OUT LOG UP TO DATE"
+    },
+    {
+      "id": "l2-i20",
+      "text": "VACCUM 'ON' FOR NYLON, CARDBOARD OK"
+    },
+    {
+      "id": "l2-i21",
+      "text": "WIRE CENTERED IN NYLON HEAD"
+    },
+    {
+      "id": "l2-i22",
+      "text": "NYLON HEAD LEAK CLEARED OFF"
+    },
+    {
+      "id": "l2-i23",
+      "text": "NYLON HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l2-i24",
+      "text": "PVC HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l2-i25",
+      "text": "LINE SPEED FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l2-i26",
+      "text": "ODAC ALARM 'ON' / ODAC SETPOINT"
+    },
+    {
+      "id": "l2-i27",
+      "text": "FEEDER 'ON' / SPEED / LEVEL OK"
+    },
+    {
+      "id": "l2-i28",
+      "text": "WIRE SMOOTH - OK IN WIRE STRAIGHTNER"
+    },
+    {
+      "id": "l2-i29",
+      "text": "SPEW BUCKET EMPTY- WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l2-i30",
+      "text": "PULLEYS ON DANCER OK, # OF WEIGHTS",
+      "needsValue": true
+    },
+    {
+      "id": "l2-i31",
+      "text": "SAFETY GUARD CHECKLIST COMPLETED"
+    },
+    {
+      "id": "l2-i32",
+      "text": "ANN AMP'S STEADY/ HOW MANY VOLTS",
+      "needsValue": true
+    },
+    {
+      "id": "l2-i33",
+      "text": "WIRE NOT ARCING IN ANNEALER"
+    },
+    {
+      "id": "l2-i34",
+      "text": "WATER COMING OUT OF TUBES X2"
+    },
+    {
+      "id": "l2-i35",
+      "text": "WATER LEVEL IN ANNEALER BASE"
+    },
+    {
+      "id": "l2-i36",
+      "text": "BUSHINGS CLEARED"
+    },
+    {
+      "id": "l2-i37",
+      "text": "PULLEYS ON ANNEALER OK"
+    },
+    {
+      "id": "l2-i38",
+      "text": "2 TURNS ON OUTSIDE CAPSTAN & NOT CROSSED"
+    },
+    {
+      "id": "l2-i39",
+      "text": "WIRE BREAKS SWITCH ON WIRE"
+    },
+    {
+      "id": "l2-i40",
+      "text": "BELT OR CHAIN WIRE DRAWER TO ANNEALER NOT LOOSE"
+    },
+    {
+      "id": "l2-i41",
+      "text": "WIRE DRAWER OK, NOT NOISY"
+    },
+    {
+      "id": "l2-i42",
+      "text": "SOLUTION LEVEL IN DIE POT"
+    },
+    {
+      "id": "l2-i43",
+      "text": "SOLUTION ON FLOOR YES/NO"
+    },
+    {
+      "id": "l2-i44",
+      "text": "NEXT RACK IN PLACE, ROD JOINT MADE, STRAPS CUT, NO CROSSES"
+    },
+    {
+      "id": "l2-i45",
+      "text": "ROD ALARM SECURED WITH COPPER (2 TURNS)"
+    },
+    {
+      "id": "l2-i46",
+      "text": "ROD ALARM WORKING, TEST"
+    },
+    {
+      "id": "l2-i47",
+      "text": "HOPPER LOADER OK, HOPPER ALARM 'ON'"
+    },
+    {
+      "id": "l2-i48",
+      "text": "MEZANINE CLEAN, EMPTY BOXES FOLDED & PUT AWAY"
+    },
+    {
+      "id": "l2-i49",
+      "text": "NYLON HOPPER ALARM 'ON'"
+    },
+    {
+      "id": "l2-i50",
+      "text": "ALL ALARMS ON LUMP,SPARK-TESTER,ODAC,PVC&NYLON HOPPERS"
+    },
+    {
+      "id": "l2-i51",
+      "text": "PUT ABSORBENT ON ANY OIL SPILL AND DON'T PICK IT UP"
+    },
+    {
+      "id": "l2-i52",
+      "text": "CORRECT MASTERBATCH MIXTURE NEXT TO LINE-OTHERS PUT AWAY"
+    }
+  ]
+}

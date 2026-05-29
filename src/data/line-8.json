@@ -1,0 +1,275 @@
+{
+  "id": "line-8",
+  "name": "Line 8",
+  "title": "Line #8 CHECKLIST",
+  "revision": "Rev. Jun 2025",
+  "headerFields": [
+    "DATE",
+    "TIME",
+    "PRODUCT"
+  ],
+  "items": [
+    {
+      "id": "l8-i1",
+      "text": "PROGRAMMED LENGTH (M)"
+    },
+    {
+      "id": "l8-i2",
+      "text": "LINE SPEED FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l8-i3",
+      "text": "LOG BOOK FILLED OUT / TEST DONE MAX 1/2 HOUR BETWEEN TESTS"
+    },
+    {
+      "id": "l8-i4",
+      "text": "GOOD SPOOLING ON TAKE UP, SPOOL NOT DAMAGED AT START"
+    },
+    {
+      "id": "l8-i5",
+      "text": "TAKE-UP PRODUCTION LIST MATCHES CURRENT PRODUCT"
+    },
+    {
+      "id": "l8-i6",
+      "text": "WIRE FEELS GOOD, GOOD COLOR"
+    },
+    {
+      "id": "l8-i7",
+      "text": "PRINTER HEAD COVER INPLACE"
+    },
+    {
+      "id": "l8-i8",
+      "text": "CORRECT COMPOUND BEING USED TO MATCH CURRENT PRODUCT"
+    },
+    {
+      "id": "l8-i9",
+      "text": "BELTS ON TAKE UP IN GOOD CONDITION"
+    },
+    {
+      "id": "l8-i10",
+      "text": "# OF TURNS & # OF WEIGHTS ON VERTICAL ACCUMULATOR",
+      "needsValue": true
+    },
+    {
+      "id": "l8-i11",
+      "text": "ALARM FOR VERTICAL ACCUMULATOR WORKING"
+    },
+    {
+      "id": "l8-i12",
+      "text": "CRASH PLATE + COIL UNDER VERTICAL ACCUMULATOR"
+    },
+    {
+      "id": "l8-i13",
+      "text": "TENSION ON HORIZONTAL ACCUMULATOR OK"
+    },
+    {
+      "id": "l8-i14",
+      "text": "PRESSURE FOR HORIZONTAL ACCUMULATOR (PSI)"
+    },
+    {
+      "id": "l8-i15",
+      "text": "NEXT RACK IN PLACE, ROD JOINT MADE, STRAPS CUT, NOT CROSSED"
+    },
+    {
+      "id": "l8-i16",
+      "text": "ROD ALARM SECURED WITH COPPER (2TURNS)"
+    },
+    {
+      "id": "l8-i17",
+      "text": "ROD GOING AROUND PULLEYS PROPELY"
+    },
+    {
+      "id": "l8-i18",
+      "text": "SOLUTION LEVEL IN DIE POT"
+    },
+    {
+      "id": "l8-i19",
+      "text": "WIRE DRAWER OK, NOT NOISY"
+    },
+    {
+      "id": "l8-i20",
+      "text": "SOLUTION ON FLOOR YES/NO, DIE ROTATOR ON"
+    },
+    {
+      "id": "l8-i21",
+      "text": "BRAKE ON FLYWHEEL FREE MOVING"
+    },
+    {
+      "id": "l8-i22",
+      "text": "WIRE BREAK SWITCH ON WIRE, AIR ON"
+    },
+    {
+      "id": "l8-i23",
+      "text": "3 TURNS ON OUTSIDE CAPSTAN & NOT CROSSED"
+    },
+    {
+      "id": "l8-i24",
+      "text": "ANNEALER PUMP ON & TURNING"
+    },
+    {
+      "id": "l8-i25",
+      "text": "LUMP DETECTOR ON, TEST, CLEAN ONCE PER WEEK"
+    },
+    {
+      "id": "l8-i26",
+      "text": "LUMP DETECTOR TOLERANCE #"
+    },
+    {
+      "id": "l8-i27",
+      "text": "SPARK TESTOR 'ON' / LOAD"
+    },
+    {
+      "id": "l8-i28",
+      "text": "COPPER DUST VACUMED FROM HEAD"
+    },
+    {
+      "id": "l8-i29",
+      "text": "PVC HEAD LEAKS CLEARED OFF"
+    },
+    {
+      "id": "l8-i30",
+      "text": "SPEW BUCKET EMPTY- WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l8-i31",
+      "text": "WIRE NOT TOO HOT GOING INTO HEAD, WARM?",
+      "needsValue": true
+    },
+    {
+      "id": "l8-i32",
+      "text": "WIRE SMOOTH AND NOT VIBRATING GOING INTO HEAD"
+    },
+    {
+      "id": "l8-i33",
+      "text": "ODAC LENS CLEAN (TURN OFFLINE)"
+    },
+    {
+      "id": "l8-i34",
+      "text": "ODAC SETPOINT"
+    },
+    {
+      "id": "l8-i35",
+      "text": "VACUUM 'ON' FOR NYLON, CARDBOARD OK"
+    },
+    {
+      "id": "l8-i36",
+      "text": "NYLON HEAD LEAK CLEARED OFF"
+    },
+    {
+      "id": "l8-i37",
+      "text": "WIRE CENTERED IN NYLON HEAD"
+    },
+    {
+      "id": "l8-i38",
+      "text": "NYLON EXHAUST FAN WORKING"
+    },
+    {
+      "id": "l8-i39",
+      "text": "PVC HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l8-i40",
+      "text": "NYLON HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l8-i41",
+      "text": "CAPSTAN SPEED FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l8-i42",
+      "text": "NORMAL RUN %",
+      "needsValue": true
+    },
+    {
+      "id": "l8-i43",
+      "text": "ANNEALER AMPS STEADY / ANNEALER TRIM %",
+      "needsValue": true
+    },
+    {
+      "id": "l8-i44",
+      "text": "FEEDER 'ON' / SPEED / LEVEL OK"
+    },
+    {
+      "id": "l8-i45",
+      "text": "WIRE ON CAPSTAN OK"
+    },
+    {
+      "id": "l8-i46",
+      "text": "WATER LEVEL IN BASIN OK & WATER VALVE ON"
+    },
+    {
+      "id": "l8-i47",
+      "text": "WIRE IN THROUGHS OK, NOT CROSSED OR UNDER GUIDES"
+    },
+    {
+      "id": "l8-i48",
+      "text": "WATER LEVEL IN TROUGHS AND TANK"
+    },
+    {
+      "id": "l8-i49",
+      "text": "WATER COMING OUT OF ALL SPIGOTS"
+    },
+    {
+      "id": "l8-i50",
+      "text": "AISLE CLEAR / ANY WATER ON FLOOR IF SO FIX LEAK"
+    },
+    {
+      "id": "l8-i51",
+      "text": "W.D. # IN USE WITH LINE 8"
+    },
+    {
+      "id": "l8-i52",
+      "text": "BELTS AND PULLEYS ON ANNEALER OK"
+    },
+    {
+      "id": "l8-i53",
+      "text": "CHECK OIL PRESSURE FOR WD (make sure its not at \"0\")"
+    },
+    {
+      "id": "l8-i54",
+      "text": "AIR PRESSURE ON ANNEALER DANCER (PSI)"
+    },
+    {
+      "id": "l8-i55",
+      "text": "ANNEALER BUSHINGS CLEAR"
+    },
+    {
+      "id": "l8-i56",
+      "text": "SAFETY GUARD CHECKLIST COMPLETED"
+    },
+    {
+      "id": "l8-i57",
+      "text": "NYLON HOPPER LEVEL/PVC HOPPER / ALARMS"
+    },
+    {
+      "id": "l8-i58",
+      "text": "ONLY 1 NYLON BOX OPENED, HOSE IN NYLON"
+    },
+    {
+      "id": "l8-i59",
+      "text": "OIL PUMP UNDER NYLON EXTRUDER TURNING"
+    },
+    {
+      "id": "l8-i60",
+      "text": "W.D. 8 SOLUTION TANK FILTER OK, NOT OVERFLOWING"
+    },
+    {
+      "id": "l8-i61",
+      "text": "PUT ABSORBENT ON ANY OIL SPILL AND DON'T PICK IT UP"
+    },
+    {
+      "id": "l8-i62",
+      "text": "CORRECT MASTERBATCH MIXTURE NEXT TO LINE-OTHERS PUT AWAY"
+    },
+    {
+      "id": "l8-i63",
+      "text": "IF THERE IS AN ALERT ON YOUR PRINTER, TELL YOUR SUPERVISOR"
+    },
+    {
+      "id": "l8-i64",
+      "text": "NO BROKEN / POORLY MADE SPOOLS AROUND SPOOL MAKER"
+    }
+  ]
+}

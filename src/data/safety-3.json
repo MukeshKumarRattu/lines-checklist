@@ -1,0 +1,116 @@
+{
+  "id": "safety-3",
+  "name": "Line 3",
+  "kind": "safety",
+  "title": "LINE #3 SAFETY GUARDS CHECKLIST",
+  "revision": "April 18 2016",
+  "note": "To be completed 2x per shift 6 hours apart",
+  "legend": [
+    "Good, In place or Bolted",
+    "X — Broken or Needs repair",
+    "R — Replaced cause previous operator did not install",
+    "M — Missing",
+    "All safety guards must be BOLTED in place at all time"
+  ],
+  "headerFields": [
+    "DATE",
+    "TIME"
+  ],
+  "items": [
+    {
+      "id": "s3-i1",
+      "text": "Accumulator cage",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s3-i2",
+      "text": "Take up belts guard right side",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i3",
+      "text": "Take up belts guard left side",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i4",
+      "text": "Travers chain's sprocket guard right side",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i5",
+      "text": "Travers chain's sprocket guard left side",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i6",
+      "text": "Pulley before Accumulator Guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i7",
+      "text": "Capstan's door",
+      "badge": "COLSED"
+    },
+    {
+      "id": "s3-i8",
+      "text": "Stabilizing pulleys guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i9",
+      "text": "Pulley from W.D to stabilizing pulleys guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i10",
+      "text": "PVC extruder belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i11",
+      "text": "Nylon extruder belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i12",
+      "text": "FX Wire drawer outside capstan guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s3-i13",
+      "text": "FX Annealer Belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i14",
+      "text": "FX Annealer Gear box belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i15",
+      "text": "FX Annealer vertical drive shaft guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i16",
+      "text": "Coupling between FX W.D & Annealer Guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i17",
+      "text": "FX Wire drawer coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i18",
+      "text": "FX wire drawer motor barrier",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s3-i19",
+      "text": "Infractions by previous shift",
+      "needsValue": true
+    }
+  ]
+}

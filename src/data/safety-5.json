@@ -1,0 +1,151 @@
+{
+  "id": "safety-5",
+  "name": "Line 5",
+  "kind": "safety",
+  "title": "LINE #5 SAFETY GUARDS CHECKLIST",
+  "revision": "MAY 25 2016",
+  "note": "To be completed 2x per shift 6 hours apart",
+  "legend": [
+    "Good, In place or Bolted",
+    "X — Broken or Needs repair",
+    "R — Replaced cause previous operator did not install",
+    "M — Missing",
+    "All safety guards must be BOLTED in place at all time"
+  ],
+  "headerFields": [
+    "DATE",
+    "TIME"
+  ],
+  "items": [
+    {
+      "id": "s5-i1",
+      "text": "Accumulator Cage",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s5-i2",
+      "text": "Pulley before Accumulator guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i3",
+      "text": "Top capstan pulley guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i4",
+      "text": "Capstan top guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i5",
+      "text": "capstan side guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i6",
+      "text": "Oscillator wheels guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i7",
+      "text": "Over driven capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i8",
+      "text": "Wire drawer dancer guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i9",
+      "text": "Annealer top capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i10",
+      "text": "Annealer back side guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i11",
+      "text": "Wire drawer chain guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i12",
+      "text": "Wire drawer to Annealer Coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i13",
+      "text": "Wire drawer oil pump coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i14",
+      "text": "Wire drawer to motor coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i15",
+      "text": "Wire drawer motor belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i16",
+      "text": "Wire drawer outside capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i17",
+      "text": "Small solution tank filter rotator motor guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i18",
+      "text": "PVC extruder belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i19",
+      "text": "Wire drawer dancer guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i20",
+      "text": "Rod pulley before wire drawer guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s5-i21",
+      "text": "Wire drawer motor belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i22",
+      "text": "Wire drawer to gear box coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i23",
+      "text": "W.D to outside cap. gear box coupling guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s5-i24",
+      "text": "W.D outside capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i25",
+      "text": "Pulley before W.D. Dancer",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s5-i26",
+      "text": "Infractions by previous shift",
+      "needsValue": true
+    }
+  ]
+}

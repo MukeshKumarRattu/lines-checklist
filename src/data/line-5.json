@@ -1,0 +1,292 @@
+{
+  "id": "line-5",
+  "name": "Line 5",
+  "title": "Line #5 CHECKLIST",
+  "revision": "Rev. APR 2026",
+  "headerFields": [
+    "DATE",
+    "TIME",
+    "PRODUCT"
+  ],
+  "items": [
+    {
+      "id": "l5-i1",
+      "text": "AREA AROUND TAKE-UP IS CLEAN"
+    },
+    {
+      "id": "l5-i2",
+      "text": "SPOOLING ON TAKE-UP GOOD - NOT CROSSED AT START"
+    },
+    {
+      "id": "l5-i3",
+      "text": "JACKET FEELS SMOOTH, GOOD COLOR"
+    },
+    {
+      "id": "l5-i4",
+      "text": "PRINT ON WIRE IS GOOD, CENTERED"
+    },
+    {
+      "id": "l5-i5",
+      "text": "CLOCK PROGRAM IS CORRECT 1&2/ LENGTH PROGRAMED IN CLOCK (M)"
+    },
+    {
+      "id": "l5-i6",
+      "text": "LINE SPEED STABLE (FT/MIN)",
+      "needsValue": true
+    },
+    {
+      "id": "l5-i7",
+      "text": "CORRECT I.D. STICKERS, CSA STICKERS"
+    },
+    {
+      "id": "l5-i8",
+      "text": "CORRECT PRINT ON WIRE, READ IT"
+    },
+    {
+      "id": "l5-i9",
+      "text": "PALLET CENTERED & NOT OVERHANGING"
+    },
+    {
+      "id": "l5-i10",
+      "text": "PRODUCTION LIST MATCHES CURRENT PRODUCT, PALLET #S"
+    },
+    {
+      "id": "l5-i11",
+      "text": "ALL SAFETY GUARDS ON"
+    },
+    {
+      "id": "l5-i12",
+      "text": "ACCUMULATOR ALARM 'ON' / TEST"
+    },
+    {
+      "id": "l5-i13",
+      "text": "# OF WEIGHTS ON ACCUMULATOR, TURNS",
+      "needsValue": true
+    },
+    {
+      "id": "l5-i14",
+      "text": "ACCUMULATOR CRASH PLATE IN PLACE"
+    },
+    {
+      "id": "l5-i15",
+      "text": "WEIGHTS NOT HANGING BELOW BOTTOM SET ON ACCUMULATOR"
+    },
+    {
+      "id": "l5-i16",
+      "text": "NO TWIST IN WIRE (2 CONDUCTORS)"
+    },
+    {
+      "id": "l5-i17",
+      "text": "LUMP DETECTOR ADJUSTED PROPERLY, 'ON' & TEST"
+    },
+    {
+      "id": "l5-i18",
+      "text": "JACKET SPARK TESTERS 'ON' / LOAD / TEST"
+    },
+    {
+      "id": "l5-i19",
+      "text": "PRINTER HEAD COVER INPLACE"
+    },
+    {
+      "id": "l5-i20",
+      "text": "CLEAN DUST IN BOTH SPARK TESTERS"
+    },
+    {
+      "id": "l5-i21",
+      "text": "CONDUCTORS 'OK' ON ALL PULLEYS NOT CROSSED"
+    },
+    {
+      "id": "l5-i22",
+      "text": "GOOD WATER LEVEL IN TROUGH & RESERVOIR"
+    },
+    {
+      "id": "l5-i23",
+      "text": "COOLING LINES IN TROUGH CLEAN (ONCE PER SHIFT)"
+    },
+    {
+      "id": "l5-i24",
+      "text": "COOLING LINES SUBMERGED IN WATER, WATER NOT HOT"
+    },
+    {
+      "id": "l5-i25",
+      "text": "WATER COMING OUT OF ALL SPIGOTS/PROPER LEVEL IN TANK"
+    },
+    {
+      "id": "l5-i26",
+      "text": "SPEW BUCKET EMPTY - WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l5-i27",
+      "text": "TEMPS ON OCP AT THE SET POINTS"
+    },
+    {
+      "id": "l5-i28",
+      "text": "COPPER NOT SCRATCHED BEFORE HEAD"
+    },
+    {
+      "id": "l5-i29",
+      "text": "OSC. ROPE NOT TOO TIGHT/LOOSE / NO CROSSES"
+    },
+    {
+      "id": "l5-i30",
+      "text": "ROPE CONDITION AT OSCILLATOR"
+    },
+    {
+      "id": "l5-i31",
+      "text": "NOSE-CONE NOT DAMAGING CONDUCTORS"
+    },
+    {
+      "id": "l5-i32",
+      "text": "LAY / TRANSITION GOOD"
+    },
+    {
+      "id": "l5-i33",
+      "text": "GIVE-UPS LINED UP WITH THE O/D CAPSTAN"
+    },
+    {
+      "id": "l5-i34",
+      "text": "NEXT GIVE-UP SET UP, CRIMP'S ON G.U.'S"
+    },
+    {
+      "id": "l5-i35",
+      "text": "OVER DRIVEN CAP. NOT TOO NOISY"
+    },
+    {
+      "id": "l5-i36",
+      "text": "WIRES ON OVER DRIVEN CAP. OK"
+    },
+    {
+      "id": "l5-i37",
+      "text": "CONDUCTOR SPARK TESTER 'ON' / LOAD / COVER CLOSED"
+    },
+    {
+      "id": "l5-i38",
+      "text": "ANNEALER AMPS NOT FLUCTUATING / ANNEALER TRIM #"
+    },
+    {
+      "id": "l5-i39",
+      "text": "# OF TURNS ON DANCER / # OF WEIGHTS ON DANCER",
+      "needsValue": true
+    },
+    {
+      "id": "l5-i40",
+      "text": "AIR WIPE ON ANNEALER"
+    },
+    {
+      "id": "l5-i41",
+      "text": "WIRE OK IN ANNEALER,  NOT ARCING (FRONT & BACK)"
+    },
+    {
+      "id": "l5-i42",
+      "text": "CORRECT WATER LEVEL IN ANNEALER"
+    },
+    {
+      "id": "l5-i43",
+      "text": "PULLEYS NOT SQUEAKING"
+    },
+    {
+      "id": "l5-i44",
+      "text": "WIRE BREAK ON WIRE"
+    },
+    {
+      "id": "l5-i45",
+      "text": "2 TURNS ON OUTSIDE CAPSTAN"
+    },
+    {
+      "id": "l5-i46",
+      "text": "WIRE DRAWER OK, NOT NOISY"
+    },
+    {
+      "id": "l5-i47",
+      "text": "W.D. LINE CONNECT YES/NO / #"
+    },
+    {
+      "id": "l5-i48",
+      "text": "CHECK LIGHT FOR WD #4 OIL PRESSURE (IF WD IS IN USE). IF LIGHT IS 'ON' CALL THE SUPERVISOR IMMEDIATELY"
+    },
+    {
+      "id": "l5-i49",
+      "text": "SOLUTION LEVEL IN DIE POD"
+    },
+    {
+      "id": "l5-i50",
+      "text": "NO SOLUTION ON FLOOR"
+    },
+    {
+      "id": "l5-i51",
+      "text": "ROD JOINT DONE, STRAPS CUT, NOT CROSSED"
+    },
+    {
+      "id": "l5-i52",
+      "text": "ROD ALARM SECURED WITH COPPER (2 TURNS)"
+    },
+    {
+      "id": "l5-i53",
+      "text": "NEXT RACK IN PLACE, ROD ALARM WORKING / TEST"
+    },
+    {
+      "id": "l5-i54",
+      "text": "HOPPER FULL / HOPPER ALARM WORKING"
+    },
+    {
+      "id": "l5-i55",
+      "text": "FEEDER 'ON' / SPEED #"
+    },
+    {
+      "id": "l5-i56",
+      "text": "TESTS LOGGED PROPERLY - MAX 1/2 HOUR BETWEEN TESTS"
+    },
+    {
+      "id": "l5-i57",
+      "text": "NO SPLIT IN JACKET - CHECK"
+    },
+    {
+      "id": "l5-i58",
+      "text": "LOG BOOK UP TO DATE / SHUT DOWN LOGGED"
+    },
+    {
+      "id": "l5-i59",
+      "text": "REEL CHANGES LOGGED PROPERLY"
+    },
+    {
+      "id": "l5-i60",
+      "text": "CARDS FOR R.L. & LUMPS FILLED OUT - NO EXTRA CARDS AROUND"
+    },
+    {
+      "id": "l5-i61",
+      "text": "SAFETY GUARD CHECKLIST COMPLETED"
+    },
+    {
+      "id": "l5-i62",
+      "text": "EXTRA CRIMP'S MADE FOR R/C"
+    },
+    {
+      "id": "l5-i63",
+      "text": "NO BROKEN / POORLY MADE SPOOLS AROUND SPOOL MAKER"
+    },
+    {
+      "id": "l5-i64",
+      "text": "PUT ABSORBENT ON ANY OIL SPILL AND DON'T PICK IT UP"
+    },
+    {
+      "id": "l5-i65",
+      "text": "IF THERE IS AN ALERT ON YOUR PRINTER, TELL YOUR SUPERVISOR"
+    },
+    {
+      "id": "l5-i66",
+      "text": "MAINTENANCE BOARD-CHECK W.D. FLOW BY OIL PUMP (W.D. 3)"
+    },
+    {
+      "id": "l5-i67",
+      "text": "MAINTENANCE BOARD- CHECK W.D. OIL LEVEL (MUST BE ABOVE LINE) (W.D. 3 & W.D. 7)"
+    },
+    {
+      "id": "l5-i68",
+      "text": "MAINTENANCE BOARD- CHECK W.D. OIL COLOUR (W.D. 3 & 7)"
+    },
+    {
+      "id": "l5-i69",
+      "text": "CORRECT COMPOUND BEING USED TO MATCH CURRENT PRODUCT"
+    }
+  ]
+}

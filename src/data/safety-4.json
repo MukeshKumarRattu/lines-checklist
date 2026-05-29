@@ -1,0 +1,146 @@
+{
+  "id": "safety-4",
+  "name": "Line 4",
+  "kind": "safety",
+  "title": "LINE #4 SAFETY GUARDS CHECKLIST",
+  "revision": "JUNE 1 2016",
+  "note": "To be completed 2x per shift 6 hours apart",
+  "legend": [
+    "Good, In place or Bolted",
+    "X — Broken or Needs repair",
+    "R — Replaced cause previous operator did not install",
+    "M — Missing",
+    "All safety guards must be BOLTED in place at all time"
+  ],
+  "headerFields": [
+    "DATE",
+    "TIME"
+  ],
+  "items": [
+    {
+      "id": "s4-i1",
+      "text": "Small Take up left side guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i2",
+      "text": "Accumulator Cage",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s4-i3",
+      "text": "36\" take up belts guard (right upper side) guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i4",
+      "text": "36\" take up belts guard (right lower side) guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i5",
+      "text": "36\" take up belts guard (left upper side) guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i6",
+      "text": "36\" take up belts guard (left lower side) guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i7",
+      "text": "Capstan back side guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i8",
+      "text": "Pulley after capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i9",
+      "text": "Capstan gear box belt guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i10",
+      "text": "Capstan safety guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i11",
+      "text": "Printer head splash protection shield",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i12",
+      "text": "In trough return pulley cover",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s4-i13",
+      "text": "Above trough return pulley guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s4-i14",
+      "text": "Pulley between wire drawer & extruder guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i15",
+      "text": "Tensioner motor guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i16",
+      "text": "PVC extruder belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i17",
+      "text": "F13 wire drawer outside capstan guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s4-i18",
+      "text": "Pulley from Ann. To pulley before Ext. guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i19",
+      "text": "Annealer top capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i20",
+      "text": "Annealer water splash guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s4-i21",
+      "text": "Annealer back side guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i22",
+      "text": "Small gear box between Ann. & F13 W.D guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i23",
+      "text": "Coupling between F13 W.D & Ann. Guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s4-i24",
+      "text": "F13 Wire drawer motor belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s4-i25",
+      "text": "Infractions by previous shift",
+      "needsValue": true
+    }
+  ]
+}

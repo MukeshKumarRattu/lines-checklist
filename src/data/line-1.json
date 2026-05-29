@@ -1,0 +1,264 @@
+{
+  "id": "line-1",
+  "name": "Line 1",
+  "title": "Line #1 CHECKLIST",
+  "revision": "Rev. Jun 2025",
+  "headerFields": [
+    "DATE",
+    "TIME",
+    "PRODUCT"
+  ],
+  "items": [
+    {
+      "id": "l1-i1",
+      "text": "CORRECT PRODUCT SETTING / T.U. SPOOLING OK"
+    },
+    {
+      "id": "l1-i2",
+      "text": "WIRE NOT CROSSING ITSELF AT START OF SPOOL"
+    },
+    {
+      "id": "l1-i3",
+      "text": "T.U. INDEX OK, CLOCK PROGRAM IS CORRECT"
+    },
+    {
+      "id": "l1-i4",
+      "text": "CORRECT STICKERS / EXTRA STICKERS PUT AWAY"
+    },
+    {
+      "id": "l1-i5",
+      "text": "PALLET STACKED PROPERLY"
+    },
+    {
+      "id": "l1-i6",
+      "text": "PRODUCTION LIST MATCHES CURRENT PRODUCT"
+    },
+    {
+      "id": "l1-i7",
+      "text": "TESTS LOGGED PROPERLY - MAX 1/2 HOUR BETWEEN TESTS"
+    },
+    {
+      "id": "l1-i8",
+      "text": "LINE SPEED FT/MIN AND SLOW RUN %",
+      "needsValue": true
+    },
+    {
+      "id": "l1-i9",
+      "text": "CORRECT PRINT - CENTERED & CLEAR  READ IT"
+    },
+    {
+      "id": "l1-i10",
+      "text": "ACCUMULATOR OK, CRASH PLATE IN PLACE AND COIL"
+    },
+    {
+      "id": "l1-i11",
+      "text": "# OF WEIGHTS ON ACCUMULATOR",
+      "needsValue": true
+    },
+    {
+      "id": "l1-i12",
+      "text": "WEIGHTS NOT HANGING BELOW BOTTOM SET ON ACCUMULATOR"
+    },
+    {
+      "id": "l1-i13",
+      "text": "WIRE ON ALL PULLEYS"
+    },
+    {
+      "id": "l1-i14",
+      "text": "WIRE ON CAPSTAN OK, RIGHT AMOUNT OF TURNS"
+    },
+    {
+      "id": "l1-i15",
+      "text": "SPARK TESTER 'ON' / SPARK TESTER LOAD"
+    },
+    {
+      "id": "l1-i16",
+      "text": "LUMP DETECTOR 'ON'  -  TEST"
+    },
+    {
+      "id": "l1-i17",
+      "text": "AIR 'ON' AFTER CAPSTAN"
+    },
+    {
+      "id": "l1-i18",
+      "text": "NO TWISTS IN WIRE"
+    },
+    {
+      "id": "l1-i19",
+      "text": "PRINTER HEAD COVER INPLACE"
+    },
+    {
+      "id": "l1-i20",
+      "text": "COOLING LINES IN TROUGH CLEAN (ONCE PER SHIFT)"
+    },
+    {
+      "id": "l1-i21",
+      "text": "WATER IN TROUGHS COVERING WIRE+PROPER LEVEL IN TANK x3"
+    },
+    {
+      "id": "l1-i22",
+      "text": "WATER COMING OUT OF ALL SPIGOTS"
+    },
+    {
+      "id": "l1-i23",
+      "text": "PVC HEATS @ SET POINTS"
+    },
+    {
+      "id": "l1-i24",
+      "text": "COOLING FOR EXTRUDER (PLUGGED/UNPLUGGED)"
+    },
+    {
+      "id": "l1-i25",
+      "text": "AMP'S ON OCP STEADY"
+    },
+    {
+      "id": "l1-i26",
+      "text": "CONDUCTOR SPARK TESTER ON, SPARK TESTER LOAD"
+    },
+    {
+      "id": "l1-i27",
+      "text": "WIRE + GROUND OK ON PULLEYS"
+    },
+    {
+      "id": "l1-i28",
+      "text": "NO CROSSES IN WIRE"
+    },
+    {
+      "id": "l1-i29",
+      "text": "SPEW BUCKET EMPTY / WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l1-i30",
+      "text": "AISLE CLEAR - NO WATER ON FLOOR"
+    },
+    {
+      "id": "l1-i31",
+      "text": "VACUUM 'ON', CARDBOARD BEHIND HEAD"
+    },
+    {
+      "id": "l1-i32",
+      "text": "ANNEALER 'ON', AMPS' STEADY"
+    },
+    {
+      "id": "l1-i33",
+      "text": "WATER LEVEL IN ANNEALER BASE OK"
+    },
+    {
+      "id": "l1-i34",
+      "text": "FAN ON TOP OF THE ANNEALER (PLUGGED/UNPLUGGED)"
+    },
+    {
+      "id": "l1-i35",
+      "text": "NO ARCING IN ANNEALER (FRONT OR BACK)"
+    },
+    {
+      "id": "l1-i36",
+      "text": "WATER COMING OUT OF TUBES, COPPER WARM, AIR ON"
+    },
+    {
+      "id": "l1-i37",
+      "text": "PULLEYS ON ANNEALER OK"
+    },
+    {
+      "id": "l1-i38",
+      "text": "BELTS & CHAINS IN GOOD CONDITION"
+    },
+    {
+      "id": "l1-i39",
+      "text": "DANCER PULLEYS, WEIGHTS"
+    },
+    {
+      "id": "l1-i40",
+      "text": "WIRE BREAK SWITCHES FOR ANNEALER, WIRE DRAWER, & DANCER"
+    },
+    {
+      "id": "l1-i41",
+      "text": "FEEDER 'ON' / SPEED / LEVEL OK"
+    },
+    {
+      "id": "l1-i42",
+      "text": "HOPPER LEVEL OK / ALARM WORKING - TEST"
+    },
+    {
+      "id": "l1-i43",
+      "text": "WIRE NOT CROSSED ON CAPSTAN OUTSIDE WIRE DRAWER"
+    },
+    {
+      "id": "l1-i44",
+      "text": "DIE ROTATOR RUNNING"
+    },
+    {
+      "id": "l1-i45",
+      "text": "SOLUTION LEVEL IN DIE POT, ROD FEEDING INTO W.D. OK"
+    },
+    {
+      "id": "l1-i46",
+      "text": "CORRECT COMPOUND BEING USED"
+    },
+    {
+      "id": "l1-i47",
+      "text": "NEXT RACK IN PLACE, ROD JOINT MADE, STRAPS CUT, NO CROSSES"
+    },
+    {
+      "id": "l1-i48",
+      "text": "ROD ALARM SECURED WITH COPPER (2 TURNS)"
+    },
+    {
+      "id": "l1-i49",
+      "text": "ROD ALARM OK - TEST"
+    },
+    {
+      "id": "l1-i50",
+      "text": "WATER ON FLOOR, IF YES FROM WHERE?",
+      "needsValue": true
+    },
+    {
+      "id": "l1-i51",
+      "text": "SAFETY GUARD CHECKLIST COMPLETED"
+    },
+    {
+      "id": "l1-i52",
+      "text": "NEXT GIVE UPS SET UP, EXTRA CRIMPS MADE"
+    },
+    {
+      "id": "l1-i53",
+      "text": "TESTS LOGGED PROPERLY - MAX 1 HOUR BETWEEN TESTS"
+    },
+    {
+      "id": "l1-i54",
+      "text": "NO SPLIT IN JACKET - CHECK"
+    },
+    {
+      "id": "l1-i55",
+      "text": "R/C'S LOGGED PROPERLY - ALL INFO ON CARDS"
+    },
+    {
+      "id": "l1-i56",
+      "text": "CARDS FOR R.L. AND LUMPS FILLED OUT - no extra cards around"
+    },
+    {
+      "id": "l1-i57",
+      "text": "START UPS & CLEAN OUTS LOGGED"
+    },
+    {
+      "id": "l1-i58",
+      "text": "AIR PRESSURE ALARM PLUGGED IN & WORKING"
+    },
+    {
+      "id": "l1-i59",
+      "text": "ALL ALARMS working, lumps,spark tester x2, low acc. hopper & wire marker"
+    },
+    {
+      "id": "l1-i60",
+      "text": "PUT ABSORBENT ON ANY OIL SPILL AND DON'T PICK IT UP"
+    },
+    {
+      "id": "l1-i61",
+      "text": "NO BROKEN/POORLY MADE SPOOLS AROUND SPOOL MAKER"
+    },
+    {
+      "id": "l1-i62",
+      "text": "IF THERE IS AN ALERT ON YOUR PRINTER, TELL YOUR SUPERVISOR"
+    }
+  ]
+}

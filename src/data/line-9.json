@@ -1,0 +1,302 @@
+{
+  "id": "line-9",
+  "name": "Line 9",
+  "title": "Line #9 CHECKLIST (RW90)",
+  "revision": "Rev. Jun 2025",
+  "headerFields": [
+    "DATE",
+    "TIME",
+    "PRODUCT"
+  ],
+  "items": [
+    {
+      "id": "l9-i1",
+      "text": "PROGRAMMED LENGTH (M)"
+    },
+    {
+      "id": "l9-i2",
+      "text": "LINE SPEED FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l9-i3",
+      "text": "GOOD SPOOLING ON TAKE UP"
+    },
+    {
+      "id": "l9-i4",
+      "text": "CORRECT PRINT / CLEAR TO READ (READ IT)"
+    },
+    {
+      "id": "l9-i5",
+      "text": "NO BROKEN / DAMAGED SPOOLS AROUND SPOOL MAKER"
+    },
+    {
+      "id": "l9-i6",
+      "text": "SPOOL NOT DAMAGED AT START"
+    },
+    {
+      "id": "l9-i7",
+      "text": "WIRE FEELS GOOD, GOOD COLOR"
+    },
+    {
+      "id": "l9-i8",
+      "text": "CORRECT CSA & PRODUCT I.D. STICKERS"
+    },
+    {
+      "id": "l9-i9",
+      "text": "CORRECT SPOOL FLANGE BEING USED (GALVANIZED FOR RW)"
+    },
+    {
+      "id": "l9-i10",
+      "text": "PALLET CENTERED AND NOT OVER HANGING"
+    },
+    {
+      "id": "l9-i11",
+      "text": "TAKE-UP PRODUCTION LIST MATCHES CURRENT PRODUCT"
+    },
+    {
+      "id": "l9-i12",
+      "text": "TAKE-UP OPERATOR'S AREA IS CLEAN"
+    },
+    {
+      "id": "l9-i13",
+      "text": "TAKE UP IN THE RIGHT GEAR"
+    },
+    {
+      "id": "l9-i14",
+      "text": "# OF TURNS & # OF WEIGHTS ON ACCUMULATOR",
+      "needsValue": true
+    },
+    {
+      "id": "l9-i15",
+      "text": "ALARM FOR ACCUMULATOR IS WORKING"
+    },
+    {
+      "id": "l9-i16",
+      "text": "CRASH PLATE OR SPRINGS IN PLACE"
+    },
+    {
+      "id": "l9-i17",
+      "text": "LUMP DETECTOR 'ON,' TEST IT, CLEAN ONCE PER WEEK"
+    },
+    {
+      "id": "l9-i18",
+      "text": "LUMP DETECTOR TOLERANCE #"
+    },
+    {
+      "id": "l9-i19",
+      "text": "SPARK TESTER 'ON ' (TEST) / LOAD"
+    },
+    {
+      "id": "l9-i20",
+      "text": "CLEAN SPARK TESTER DUST"
+    },
+    {
+      "id": "l9-i21",
+      "text": "BOTH AIR WIPES 'ON'  & WIRE CENTERED"
+    },
+    {
+      "id": "l9-i22",
+      "text": "PRINTER HEAD COVER INPLACE"
+    },
+    {
+      "id": "l9-i23",
+      "text": "EXTRUDER HEAD LEAKS CLEARED OFF IF ANY"
+    },
+    {
+      "id": "l9-i24",
+      "text": "SPEW BUCKET EMPTY- WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l9-i25",
+      "text": "WIRE SMOOTH AND NOT VIBRATING GOING INTO HEAD"
+    },
+    {
+      "id": "l9-i26",
+      "text": "ODAC SETPOINT, (CLEAN ONCE PER WEEK)"
+    },
+    {
+      "id": "l9-i27",
+      "text": "CATALYST ON/ INDICATE SPEED"
+    },
+    {
+      "id": "l9-i28",
+      "text": "AMOUNT OF CATALYST USED PER SPOOL"
+    },
+    {
+      "id": "l9-i29",
+      "text": "CATALYST FEEDER LEVEL"
+    },
+    {
+      "id": "l9-i30",
+      "text": "NOTHING FLAMABLE BENEATH EXTRUDER HEAD"
+    },
+    {
+      "id": "l9-i31",
+      "text": "EXTRUDER HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l9-i32",
+      "text": "CAPSTAN SPEED"
+    },
+    {
+      "id": "l9-i33",
+      "text": "NORMAL RUN %",
+      "needsValue": true
+    },
+    {
+      "id": "l9-i34",
+      "text": "SLOW RUN %",
+      "needsValue": true
+    },
+    {
+      "id": "l9-i35",
+      "text": "FEEDER 'ON' / SPEED % / LEVEL OK",
+      "needsValue": true
+    },
+    {
+      "id": "l9-i36",
+      "text": "WIRE ON CAPSTAN OK"
+    },
+    {
+      "id": "l9-i37",
+      "text": "WATER LEVEL IN BASIN OK & WATER VALVE ON"
+    },
+    {
+      "id": "l9-i38",
+      "text": "WIRE IN THROUGHS OK (WATER LEVEL OK)"
+    },
+    {
+      "id": "l9-i39",
+      "text": "CORRECT COMPOUND BEING USED TO MATCH THE PRODUCT"
+    },
+    {
+      "id": "l9-i40",
+      "text": "WATER COMING OUT OF ALL SPIGOTS & DIRECTED RIGHT"
+    },
+    {
+      "id": "l9-i41",
+      "text": "AISLE CLEAR / ANY WATER ON FLOOR IF SO FIX LEAK"
+    },
+    {
+      "id": "l9-i42",
+      "text": "SAFETY GUARD CHECKLIST DONE"
+    },
+    {
+      "id": "l9-i43",
+      "text": "HOPPER LEVEL/HOPPER ALARM"
+    },
+    {
+      "id": "l9-i44",
+      "text": "ONLY 1 CATALYST BOX OPENED, BOX IS COVERED"
+    },
+    {
+      "id": "l9-i45",
+      "text": "ALL ALARMS WORKING LUMP, SPARK-TESTER"
+    },
+    {
+      "id": "l9-i46",
+      "text": "GIVE-UPS ARE IN GOOD CONDITION, NO REPAIR NEEDED"
+    },
+    {
+      "id": "l9-i47",
+      "text": "WEIGHT FOR BRAKE ON FLYWHEEL FREE MOVING"
+    },
+    {
+      "id": "l9-i48",
+      "text": "PULLEYS ARE NOT SQUEKING"
+    },
+    {
+      "id": "l9-i49",
+      "text": "TESTS LOGGED PROPERLY - MAX 1/2 HOUR BETWEEN TESTS"
+    },
+    {
+      "id": "l9-i50",
+      "text": "LENS COVERS IN PLACE ODAC & LUMP"
+    },
+    {
+      "id": "l9-i51",
+      "text": "AIR WIPES CLOSED"
+    },
+    {
+      "id": "l9-i52",
+      "text": "NO COMPOUND PELLETS ON (FLOOR, MEZ,EXTR)"
+    },
+    {
+      "id": "l9-i53",
+      "text": "PUT ABSORBENT ON ANY OIL SPILL AND DON'T PICK IT UP"
+    },
+    {
+      "id": "l9-i54",
+      "text": "W.D. # IN USE WITH LINE 9"
+    },
+    {
+      "id": "l9-i55",
+      "text": "ANNEALER PUMP TURNED ON & TURNING"
+    },
+    {
+      "id": "l9-i56",
+      "text": "ANNEALER AMPS STEADY"
+    },
+    {
+      "id": "l9-i57",
+      "text": "WATER LEVEL IN ANNEALER TANK & W.D SOLUTION IS GOOD"
+    },
+    {
+      "id": "l9-i58",
+      "text": "WIRE BREAK SWITCH ON WIRE, AIR ON"
+    },
+    {
+      "id": "l9-i59",
+      "text": "3 TURNS ON OUTSIDE CAPSTAN & NOT CROSSED"
+    },
+    {
+      "id": "l9-i60",
+      "text": "WIRE DRAWER OK, NOT NOISY"
+    },
+    {
+      "id": "l9-i61",
+      "text": "SOLUTION LEVEL IN DIE POT"
+    },
+    {
+      "id": "l9-i62",
+      "text": "SOLUTION ON FLOOR YES / NO"
+    },
+    {
+      "id": "l9-i63",
+      "text": "PULLEYS ON ANNEALER AND DANCER OK"
+    },
+    {
+      "id": "l9-i64",
+      "text": "NEXT RACK IN PLACE, ROD JOINT MADE, STRAPS CUT, NOT CROSSED"
+    },
+    {
+      "id": "l9-i65",
+      "text": "ROD ALARM SECURED WITH COPPER (2TURNS)"
+    },
+    {
+      "id": "l9-i66",
+      "text": "ROD GOING AROUND PULLEYS PROPERLY, .(0486)"
+    },
+    {
+      "id": "l9-i67",
+      "text": "BELTS ON ANNEALER OK"
+    },
+    {
+      "id": "l9-i68",
+      "text": "ALIGNMENT PULLEY ON WALL DIRECTED PROPERLY"
+    },
+    {
+      "id": "l9-i69",
+      "text": "IF THERE IS AN ALERT ON YOUR PRINTER, PLEASE TELL YOUR SUPERVISOR"
+    },
+    {
+      "id": "l9-i70",
+      "text": "CHECK W.D. OIL COLOUR"
+    },
+    {
+      "id": "l9-i71",
+      "text": "CORRECT MASTERBATCH MIXTURE NEXT TO LINE-OTHERS PUT AWAY"
+    }
+  ]
+}

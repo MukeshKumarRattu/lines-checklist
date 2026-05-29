@@ -1,0 +1,262 @@
+==============================================================================
+LINES CHECKLIST  —  INTEGRATION INSTRUCTIONS FOR LOVABLE
+==============================================================================
+
+GOAL
+- Merge this "Lines Checklist" feature into my EXISTING app.
+- Add a HAMBURGER-MENU item named exactly "Checklists" that opens this feature.
+- This feature must use ITS OWN database — a separate set of Supabase tables and
+  a separate storage bucket, isolated from the existing app's data. Do not touch
+  or reuse the host app's existing tables.
+
+WHAT THIS FEATURE IS
+- A PTI production-line checklist tool. Operators open a line, fill in the "Line
+  Checklist" and the "Safety Guards" checklist, submit them, and attach defect
+  photos. Admins edit the checklist definitions, set per-guard reference photos,
+  and manage past submissions.
+
+TECH USED (match to the host app where it already has these)
+- React + TypeScript + Tailwind (shadcn-style theme tokens / HSL CSS variables).
+- React Router for navigation.
+- @tanstack/react-query for data fetching/caching.
+- lucide-react for icons.
+- @dnd-kit/core + @dnd-kit/sortable + @dnd-kit/utilities for drag-to-reorder in
+  the editor.
+
+------------------------------------------------------------------------------
+1) FILES TO USE   (everything is under src/ in this folder)
+------------------------------------------------------------------------------
+PAGES  (src/pages/)
+  Index.tsx ............. the line selector. THIS is the "Checklists" landing page
+                          that the hamburger item opens.
+  LinePage.tsx .......... a single line with tabs: Line Checklist / Safety Guards
+                          / Submissions.
+  GuardPhotos.tsx ....... photo gallery with two tabs: Reference + Defected Guards.
+  AssignGuardPhotos.tsx . mobile-friendly page to set the reference photo per guard.
+  Submissions.tsx ....... list of all submissions (uses SubmissionsList).
+  Edit.tsx .............. desktop-only admin: edit checklist definitions + manage
+                          (view / edit / delete) submissions.
+  NotFound.tsx .......... 404 fallback.
+
+COMPONENTS  (src/components/)
+  ChecklistForm.tsx ..... the fill-in form for both Line and Safety checklists.
+  SubmissionsList.tsx ... submissions table with filters + pagination.
+  DatePicker.tsx ........ dependency-free calendar popup.
+  ConfirmDialog.tsx ..... reusable confirm modal.
+
+HOOKS  (src/hooks/)
+  useChecklists.ts ...... loads/saves the checklist definitions (React Query).
+  useGuardPhotoBadges.ts  "new photo" badge tracking (localStorage seen-set).
+
+LIB  (src/lib/)
+  api.ts ⭐ ............. THE DATA LAYER. This is the ONLY file that talks to the
+                          backend. REIMPLEMENT every function here against Supabase
+                          (see section 3). Keep the SAME function names, the SAME
+                          parameters, and the SAME return shapes — every page and
+                          component imports only from here, so nothing else changes.
+  image.ts .............. client-side image compression (resize + JPEG). Keep as-is.
+  utils.ts .............. cn() Tailwind class-merge helper. Keep as-is.
+
+DATA  (src/data/)
+  lines.ts + line-*.json + safety-*.json
+            ............. the DEFAULT checklist content (the actual line + safety
+                          guard items). Use these to SEED the database the first
+                          time it is empty (see fetchChecklists in section 3).
+
+THEME REFERENCE
+  src/index.css ......... the shadcn HSL theme tokens the components rely on
+                          (--background, --foreground, --card, --primary,
+                          --secondary, --muted, --accent, --destructive, --border,
+                          --input, --ring, --radius). Your app's shadcn theme almost
+                          certainly already defines these — if so, you do NOT need
+                          this file. It is here only so the tokens are documented.
+
+REFERENCE ONLY — DO NOT REPLACE THE HOST APP'S VERSIONS
+  App.tsx, main.tsx ..... included only to show the routes and the providers this
+                          feature needs (React Router + a React Query
+                          QueryClientProvider). MERGE the routes into your existing
+                          router; do NOT overwrite the host app's App.tsx/main.tsx.
+
+NOT INCLUDED (on purpose)
+  There is NO server/ folder. The original app used a local Express + JSON-file
+  backend; that is intentionally removed. Replace it entirely with Supabase
+  (section 3). Anything about https://localhost:8080, a Vite proxy, or .bat
+  launch scripts is irrelevant in Lovable.
+
+------------------------------------------------------------------------------
+2) ROUTING + HAMBURGER MENU
+------------------------------------------------------------------------------
+Mount all pages under the base path  /checklists  :
+
+    /checklists                  ->  Index            (line selector) [MENU TARGET]
+    /checklists/line/:lineId     ->  LinePage
+    /checklists/submissions      ->  Submissions
+    /checklists/guard-photos     ->  GuardPhotos
+    /checklists/assign-photos    ->  AssignGuardPhotos
+    /checklists/edit             ->  Edit
+
+- Add a hamburger-menu entry labeled exactly  "Checklists"  that links to
+  /checklists.
+
+- IMPORTANT: the pages use absolute <Link to="..."> / navigate paths. Prefix them
+  all with /checklists when merging. The absolute paths currently used are:
+      "/"                              (back-to-home links -> change to "/checklists")
+      "/edit"                          -> "/checklists/edit"
+      "/guard-photos"                  -> "/checklists/guard-photos"
+      "/assign-photos"                 -> "/checklists/assign-photos"
+      "/submissions"                   -> "/checklists/submissions"
+      "/line/{id}"                     -> "/checklists/line/{id}"
+      "/line/{id}?tab=submissions"     -> "/checklists/line/{id}?tab=submissions"
+  (Alternatively, give this feature's router subtree a basename of "/checklists".)
+
+------------------------------------------------------------------------------
+3) DATABASE — ITS OWN TABLES + STORAGE  ⭐  (the important part)
+------------------------------------------------------------------------------
+Create DEDICATED Supabase tables (prefixed lc_ so they never collide with the
+host app) and ONE storage bucket. Then rewrite src/lib/api.ts to use the Supabase
+client, keeping the exact same exported function signatures.
+
+STORAGE
+  Bucket: "checklist-photos"  (public read). All uploaded images live here; store
+  each file's public URL on the matching row.
+
+TABLES
+
+  lc_checklists   -- editable checklist definitions, ONE ROW PER LINE
+    id          text primary key          -- line id, e.g. "1"
+    name        text                       -- "Line 1"
+    available   boolean default true
+    data        jsonb                      -- the Line Checklist (ChecklistData)
+    safety      jsonb                      -- the Safety Guards   (ChecklistData)
+    -- ChecklistData shape:
+    --   { id, name, title, revision,
+    --     headerFields: string[],
+    --     items: [{ id, text, needsValue?: boolean, badge?: string }],
+    --     note?: string, legend?: string[] }
+
+  lc_submissions  -- one completed checklist
+    id            uuid primary key default gen_random_uuid()
+    submitted_at  timestamptz default now()
+    kind          text        -- 'line' | 'safety'
+    date          text        -- 'YYYY-MM-DD'
+    time          text        -- 'HH:MM'
+    line          text
+    line_name     text
+    title         text
+    revision      text
+    operator      text
+    fields        jsonb       -- { [headerFieldName]: value }
+    items         jsonb       -- [{ id, text, status, value?, comment?, photoUrl? }]
+    completed     int
+    total         int
+    issues        int
+
+  lc_guard_photos -- per-guard photo timeline (reference + defect)
+    id          uuid primary key default gen_random_uuid()
+    line        text
+    item_id     text
+    item_text   text
+    kind        text          -- 'reference' | 'defect'
+    status      text          -- defects only: 'X' | 'R'  (else '')
+    operator    text
+    uploaded_at timestamptz default now()
+    url         text          -- public URL in the checklist-photos bucket
+
+api.ts FUNCTIONS TO IMPLEMENT (keep names, params, return types):
+
+  fetchChecklists(): LineCard[]
+    - SELECT * FROM lc_checklists.
+    - If the table is EMPTY, seed it from src/data/lines.ts (DEFAULT_LINES) and
+      return those. (DEFAULT_LINES already contains all the real line + safety
+      content from the *.json files.)
+
+  saveChecklists(lines): LineCard[]
+    - Upsert the whole set into lc_checklists.
+    - THEN prune orphan reference photos: delete any lc_guard_photos row with
+      kind='reference' whose (line,item_id) no longer appears in ANY line's
+      safety.items (and delete its storage file). Never prune defect photos.
+      Skip pruning entirely if the incoming set is empty (so a bad save can't
+      wipe every reference photo).
+
+  fetchSubmissions(filters): Submission[]
+    - filters: { line?, kind?, operator?, date? }. operator is a case-insensitive
+      substring match (ilike). Return newest first (order by submitted_at desc).
+
+  submitChecklist(payload): Submission
+    - Insert one lc_submissions row.
+    - CRITICAL: for each item whose status is 'X' or 'R' and that has a photoUrl
+      pointing at a guard photo, COPY that storage file to a NEW object and replace
+      the item's photoUrl with the copy's URL BEFORE inserting. This makes the
+      submission's photo independent, so deleting the gallery photo later never
+      breaks the report.
+
+  updateSubmission(id, patch): Submission
+    - Update operator / date / time / fields / items as provided. When items
+      change, recompute completed (# with a status), total (# items), issues
+      (# with a status that isn't 'ok'/'good'). When an item's photoUrl is removed
+      vs the stored row, delete that storage file.
+
+  deleteSubmission(id): void
+    - Delete the row and any of its own (copied) photo files from storage.
+
+  fetchGuardPhotos({ line?, itemId?, kind? }): GuardPhoto[]
+    - SELECT with the given filters, newest first.
+
+  uploadGuardPhoto({ line, itemId, itemText, operator, image, kind, status }): GuardPhoto
+    - image is a base64 data URL (already compressed client-side). Decode it,
+      upload to the checklist-photos bucket, insert an lc_guard_photos row with
+      the public url, return the row.
+    - If kind === 'reference': FIRST delete any existing reference photo for the
+      same (line,item_id) — at most ONE reference per guard (replace on re-upload).
+    - kind defaults to 'defect' if not provided.
+
+  deleteGuardPhoto(id): void
+    - Delete the row and its storage file.
+
+(The exact TypeScript types — Submission, SubmissionItem, GuardPhoto, LineCard,
+ChecklistData, ChecklistItem — are already defined in src/lib/api.ts and
+src/data/lines.ts. Keep them; just change the function bodies.)
+
+------------------------------------------------------------------------------
+4) KEY BEHAVIORS TO PRESERVE (so the UI keeps working)
+------------------------------------------------------------------------------
+- Reference photo: exactly ONE per (line,itemId); uploading a new one replaces it.
+- Defect photos: a timeline (many per guard). The "Defected Guards" gallery tab
+  shows ONLY status='X'. 'R' photos are excluded from the gallery but still attach
+  to the submission.
+- Defect photos for X and R ride on the submission item as an INDEPENDENT COPY
+  (see submitChecklist). The submission views show a small camera icon on X/R rows.
+- After a successful submit, ChecklistForm itself calls deleteGuardPhoto on any
+  captured defect photo whose final status != 'X' (R's gallery copy + abandoned
+  captures) — your deleteGuardPhoto just needs to work.
+- Statuses:
+    Line   -> ok (✓) | fail (✗)
+    Safety -> good (✓) | X (broken) | R (replaced) | M (missing)
+- Reference tab (GuardPhotos) has NO "All lines" option and defaults to one line;
+  Defected tab defaults to "All lines". (Already handled in the page code.)
+- Edit page is desktop-only (>=1280px) by design and is the de-facto admin area.
+  There is NO login yet — gate /checklists/edit behind your app's admin/auth if you
+  want to restrict it.
+
+------------------------------------------------------------------------------
+5) DEPENDENCIES TO ENSURE PRESENT
+------------------------------------------------------------------------------
+  react-router-dom
+  @tanstack/react-query
+  lucide-react
+  @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities
+  @fontsource-variable/inter   (optional — main.tsx imports it; safe to drop and
+                                 let the host app's font apply)
+  tailwindcss with shadcn-style theme tokens (see src/index.css). If the host app
+  is already a shadcn project, the tokens exist and no theme work is needed.
+
+------------------------------------------------------------------------------
+SUMMARY FOR THE BUILDER
+------------------------------------------------------------------------------
+1. Drop these src/ files into the project (under a feature folder if you prefer).
+2. Add routes under /checklists and a hamburger item "Checklists" -> /checklists,
+   prefixing the internal links as listed in section 2.
+3. Create the lc_* tables + checklist-photos bucket (its own database).
+4. Rewrite ONLY src/lib/api.ts against Supabase, keeping every signature identical,
+   and seed lc_checklists from src/data on first run.
+5. Everything else (pages, components, hooks, image/utils) works unchanged.

@@ -1,0 +1,220 @@
+{
+  "id": "line-3",
+  "name": "Line 3",
+  "title": "Line #3 CHECKLIST",
+  "revision": "Rev. Sep 2024",
+  "headerFields": [
+    "DATE",
+    "TIME"
+  ],
+  "items": [
+    {
+      "id": "l3-i1",
+      "text": "LOG BOOK FILLED OUT / TEST DONE"
+    },
+    {
+      "id": "l3-i2",
+      "text": "GOOD SPOOLING ON TAKE UP"
+    },
+    {
+      "id": "l3-i3",
+      "text": "WIRE FEELS GOOD, GOOD COLOR"
+    },
+    {
+      "id": "l3-i4",
+      "text": "EXTRA FAULT CARDS MADE"
+    },
+    {
+      "id": "l3-i5",
+      "text": "BELTS ON TAKE UP IN GOOD CONDITION"
+    },
+    {
+      "id": "l3-i6",
+      "text": "# OF WEIGHTS ON ACCUMULATOR / PULLEYS OK",
+      "needsValue": true
+    },
+    {
+      "id": "l3-i7",
+      "text": "WEIGHTS NOT HANGING BELOW BOTTOM SET ON ACCUMULATOR"
+    },
+    {
+      "id": "l3-i8",
+      "text": "LUMP DETECTOR 'ON' - TEST"
+    },
+    {
+      "id": "l3-i9",
+      "text": "LUMP DETECTOR TOLERANCE #"
+    },
+    {
+      "id": "l3-i10",
+      "text": "SPARK TESTOR 'ON ' (TEST) / LOAD"
+    },
+    {
+      "id": "l3-i11",
+      "text": "AIR 'ON' FOR AIR WIPE"
+    },
+    {
+      "id": "l3-i12",
+      "text": "WIRE ON CAPSTAN OK"
+    },
+    {
+      "id": "l3-i13",
+      "text": "WATER LEVEL IN TROUGHS AND TANKS"
+    },
+    {
+      "id": "l3-i14",
+      "text": "WATER COMING OUT OF ALL SPIGOTS"
+    },
+    {
+      "id": "l3-i15",
+      "text": "COOLING LINES IN TROUGH CLEAN (ONCE PER SHIFT)"
+    },
+    {
+      "id": "l3-i16",
+      "text": "AISLE CLEAR / ANY WATER ON FLOOR IF SO FIX LEAK"
+    },
+    {
+      "id": "l3-i17",
+      "text": "CLEAN OUT LOG UP TO DATE"
+    },
+    {
+      "id": "l3-i18",
+      "text": "VACUUM 'ON' FOR NYLON, CARDBOARD OK"
+    },
+    {
+      "id": "l3-i19",
+      "text": "NYLON EXHAUST FAN WORKING"
+    },
+    {
+      "id": "l3-i20",
+      "text": "WIRE CENTERED IN NYLON HEAD"
+    },
+    {
+      "id": "l3-i21",
+      "text": "NYLON HEAD LEAK CLEARED OFF"
+    },
+    {
+      "id": "l3-i22",
+      "text": "INDICATE LINE SPEED     FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l3-i23",
+      "text": "PVC HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l3-i24",
+      "text": "NYLON HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l3-i25",
+      "text": "ODAC ON AUTOMATIC /  ODAC SETPOINT"
+    },
+    {
+      "id": "l3-i26",
+      "text": "FEEDER 'ON' / SPEED / LEVEL OK"
+    },
+    {
+      "id": "l3-i27",
+      "text": "WIRE NOT TOO HOT GOING INTO HEAD, WARM?",
+      "needsValue": true
+    },
+    {
+      "id": "l3-i28",
+      "text": "WIRE SMOOTH AND NOT VIBRATING GOING INTO HEAD"
+    },
+    {
+      "id": "l3-i29",
+      "text": "SPEW BUCKET EMPTY- WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l3-i30",
+      "text": "ANNEALER PUMP TURNED ON & TURNING"
+    },
+    {
+      "id": "l3-i31",
+      "text": "ANNEALER AMPS STEADY, ANNEALER % TRIM GUARDS 'ON'",
+      "needsValue": true
+    },
+    {
+      "id": "l3-i32",
+      "text": "WATER LEVEL IN ANNEALER TANK IS GOOD"
+    },
+    {
+      "id": "l3-i33",
+      "text": "3 TURNS ON OUTSIDE CAPSTAN & NOT CROSSED"
+    },
+    {
+      "id": "l3-i34",
+      "text": "WIRE DRAWER OK, NOT NOISY"
+    },
+    {
+      "id": "l3-i35",
+      "text": "W.D. LINE CONNECT YES/NO"
+    },
+    {
+      "id": "l3-i36",
+      "text": "SOLUTION LEVEL IN DIE POT"
+    },
+    {
+      "id": "l3-i37",
+      "text": "SOLUTION ON FLOOR YES / NO"
+    },
+    {
+      "id": "l3-i38",
+      "text": "PULLEYS ON ANNEALER DANCER OK"
+    },
+    {
+      "id": "l3-i39",
+      "text": "BUSHINGS CLEARED ON TOP OF ANN. & AIR WIPE ON"
+    },
+    {
+      "id": "l3-i40",
+      "text": "PROPER AIR PRESSURE ON DANCER / # psi"
+    },
+    {
+      "id": "l3-i41",
+      "text": "NEXT RACK IN PLACE, ROD JOINT MADE, STRAPS CUT, NOT CROSSED"
+    },
+    {
+      "id": "l3-i42",
+      "text": "ROD ALARM SECURED WITH COPPER (2TURNS)"
+    },
+    {
+      "id": "l3-i43",
+      "text": "ROD GOING AROUND PULLEYS PROPELY ROD ALARM 'ON' TEST"
+    },
+    {
+      "id": "l3-i44",
+      "text": "NEW VALVE ON ANNEALER TANK IS OPEN WHEN LINE IS RUNNING"
+    },
+    {
+      "id": "l3-i45",
+      "text": "SAFETY GUARD CHECKLIST COMPLETED"
+    },
+    {
+      "id": "l3-i46",
+      "text": "BELTS ON ANNEALER OK"
+    },
+    {
+      "id": "l3-i47",
+      "text": "NYLON HOPPER LEVEL/PVC HOPPER / ALARMS"
+    },
+    {
+      "id": "l3-i48",
+      "text": "ALL ALARMS WORKING LUMP , SPARK-TESTER O.D.A.C."
+    },
+    {
+      "id": "l3-i49",
+      "text": "PUT ABSORBENT ON ANY OIL SPILL AND DON'T PICK IT UP"
+    },
+    {
+      "id": "l3-i50",
+      "text": "CORRECT MASTERBATCH MIXTURE NEXT TO LINE-OTHERS PUT AWAY"
+    },
+    {
+      "id": "l3-i51",
+      "text": "MAINTENANCE BOARD- CHECK W.D. OIL COLOUR"
+    }
+  ]
+}

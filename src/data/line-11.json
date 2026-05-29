@@ -1,0 +1,247 @@
+{
+  "id": "line-11",
+  "name": "Line 11",
+  "title": "Line #11 CHECKLIST",
+  "revision": "Rev. Dec 2023",
+  "headerFields": [
+    "DATE",
+    "TIME",
+    "PRODUCT"
+  ],
+  "items": [
+    {
+      "id": "l11-i1",
+      "text": "PROGRAMMED LENGTH (M)"
+    },
+    {
+      "id": "l11-i2",
+      "text": "TAKE UP AREA CLEAN"
+    },
+    {
+      "id": "l11-i3",
+      "text": "LOG BOOK FILLED OUT / TEST DONE"
+    },
+    {
+      "id": "l11-i4",
+      "text": "GOOD SPOOLING ON REEL"
+    },
+    {
+      "id": "l11-i5",
+      "text": "WIRE FEELS GOOD, GOOD COLOR"
+    },
+    {
+      "id": "l11-i6",
+      "text": "EXTRA FAULT CARDS MADE"
+    },
+    {
+      "id": "l11-i7",
+      "text": "# OF TURNS & # OF WEIGHTS ON ACCUMULATOR",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i8",
+      "text": "ACCUMULATOR CRASH PREVENTER ATTACHED Y/N"
+    },
+    {
+      "id": "l11-i9",
+      "text": "ACCUMULATOR GUARD IN PLACE"
+    },
+    {
+      "id": "l11-i10",
+      "text": "SPARK TESTOR 'ON ' (TEST) / SPARK TESTER LOAD #"
+    },
+    {
+      "id": "l11-i11",
+      "text": "LUMP DETECTOR ON, TEST, CLEAN ONCE PER WEEK"
+    },
+    {
+      "id": "l11-i12",
+      "text": "LUMP DETECTOR TOLERANCE #"
+    },
+    {
+      "id": "l11-i13",
+      "text": "WIRE CENTERED IN LUMP DETECTOR"
+    },
+    {
+      "id": "l11-i14",
+      "text": "COOLING LINES IN TROUGH CLEAN (ONCE PER SHIFT)"
+    },
+    {
+      "id": "l11-i15",
+      "text": "DAMS IN TROUGH, ENOUGH WATER +  PROPER LEVEL IN TANK"
+    },
+    {
+      "id": "l11-i16",
+      "text": "WATER COMING OUT OF ALL SPIGOTS"
+    },
+    {
+      "id": "l11-i17",
+      "text": "AISLE CLEAR / ANY WATER ON FLOOR IF SO FIX LEAK"
+    },
+    {
+      "id": "l11-i18",
+      "text": "NYLON HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l11-i19",
+      "text": "PVC HEATS AT SETPOINTS"
+    },
+    {
+      "id": "l11-i20",
+      "text": "LINE SPEED FT/MIN",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i21",
+      "text": "ODAC SETPOINT"
+    },
+    {
+      "id": "l11-i22",
+      "text": "NORMAL RUN %",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i23",
+      "text": "CAPSTAN %",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i24",
+      "text": "PVC %",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i25",
+      "text": "NYLON %",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i26",
+      "text": "FEEDER 'ON' / SPEED / LEVEL OK"
+    },
+    {
+      "id": "l11-i27",
+      "text": "WIRE CENTERED IN NYLON HEAD"
+    },
+    {
+      "id": "l11-i28",
+      "text": "NYLON HEAD LEAK CLEARED OFF"
+    },
+    {
+      "id": "l11-i29",
+      "text": "VACUUM 'ON' FOR NYLON, CARDBOARD OK"
+    },
+    {
+      "id": "l11-i30",
+      "text": "CLEAN OUT LOG UP TO DATE"
+    },
+    {
+      "id": "l11-i31",
+      "text": "WIRE SMOOTH AND NOT VIBRATING GOING INTO HEAD"
+    },
+    {
+      "id": "l11-i32",
+      "text": "WIRE NOT TOO HOT GOING INTO HEAD, WARM?",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i33",
+      "text": "COPPER DUST VACUMED FROM HEAD"
+    },
+    {
+      "id": "l11-i34",
+      "text": "PVC HEAD LEAKS CLEARED OFF"
+    },
+    {
+      "id": "l11-i35",
+      "text": "SPEW BUCKET EMPTY- WATER LEVEL GOOD (3/4 FULL)"
+    },
+    {
+      "id": "l11-i36",
+      "text": "W.D. # BEING USED"
+    },
+    {
+      "id": "l11-i37",
+      "text": "DANCER GUARD IN PLACE"
+    },
+    {
+      "id": "l11-i38",
+      "text": "ANNEALER HEAT %",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i39",
+      "text": "WIRE NOT ARCING IN ANNEALER"
+    },
+    {
+      "id": "l11-i40",
+      "text": "# OF TURNS & # OF WEIGHTS ON DANCER",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i41",
+      "text": "WATER COMING OUT OF TUBES x 2"
+    },
+    {
+      "id": "l11-i42",
+      "text": "WATER LEVEL IN ANNEALER BASE"
+    },
+    {
+      "id": "l11-i43",
+      "text": "ANNEALER BUSHINGS CLEAR"
+    },
+    {
+      "id": "l11-i44",
+      "text": "PULLEYS IN ANNEALER OK"
+    },
+    {
+      "id": "l11-i45",
+      "text": "ANNEALER NOISY, IF YES FROM WHERE?",
+      "needsValue": true
+    },
+    {
+      "id": "l11-i46",
+      "text": "WIRE DRAWER OKAY, NOT NOISY"
+    },
+    {
+      "id": "l11-i47",
+      "text": "SOLUTION LEVEL IN DIE POT"
+    },
+    {
+      "id": "l11-i48",
+      "text": "SOLUTION ON FLOOR YES/NO"
+    },
+    {
+      "id": "l11-i49",
+      "text": "ROD GOING AROUND PULLEYS PROPELY"
+    },
+    {
+      "id": "l11-i50",
+      "text": "NEXT RACK IN PLACE, ROD JOINT MADE, STRAPS CUT, NOT CROSSED"
+    },
+    {
+      "id": "l11-i51",
+      "text": "CHECK OIL PRESSURE FOR WD (make sure its not at \"0\")"
+    },
+    {
+      "id": "l11-i52",
+      "text": "PROPER AIR PRESSURE ON ANNEALER DANCER (PSI)"
+    },
+    {
+      "id": "l11-i53",
+      "text": "PVC HOPPER LOADER OK, HOPPER ALARM \"ON\""
+    },
+    {
+      "id": "l11-i54",
+      "text": "MEZZANINE CLEAN, EMPTY BOXES FOLDED & PUT AWAY"
+    },
+    {
+      "id": "l11-i55",
+      "text": "NYLON HOPPER LOADER OK, HOPPER ALARM \"ON\""
+    },
+    {
+      "id": "l11-i56",
+      "text": "SAFETY GUARD CHECKLIST COMPLETED"
+    }
+  ]
+}

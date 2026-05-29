@@ -1,0 +1,141 @@
+{
+  "id": "safety-2",
+  "name": "Line 2",
+  "kind": "safety",
+  "title": "LINE #2 SAFETY GUARDS CHECKLIST",
+  "revision": "April 18 2016",
+  "note": "To be completed 2x per shift 6 hours apart",
+  "legend": [
+    "Good, In place or Bolted",
+    "X — Broken or Needs repair",
+    "R — Replaced cause previous operator did not install",
+    "M — Missing",
+    "All safety guards must be BOLTED in place at all time"
+  ],
+  "headerFields": [
+    "DATE",
+    "TIME"
+  ],
+  "items": [
+    {
+      "id": "s2-i1",
+      "text": "Capstan top guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i2",
+      "text": "Capstan bottom guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i3",
+      "text": "Left side take up belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i4",
+      "text": "Right side take up belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i5",
+      "text": "Traverse motor coupling guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i6",
+      "text": "Accumulator cage",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s2-i7",
+      "text": "Mezzanine gate closed",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s2-i8",
+      "text": "Take up motor guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i9",
+      "text": "Pulley before Accumulator Guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i10",
+      "text": "Return pulley for lower trough guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s2-i11",
+      "text": "Shaft for return pulley guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i12",
+      "text": "Return pulley for upper trough guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i13",
+      "text": "Annealer Dancer cage",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i14",
+      "text": "Annealer top capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i15",
+      "text": "Annealer Side capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i16",
+      "text": "Annealer Upper side capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i17",
+      "text": "Annealer Back side guard",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s2-i18",
+      "text": "Wire drawer #2 outside capstan guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i19",
+      "text": "Wire drawer back side barrier",
+      "badge": "INPLACE"
+    },
+    {
+      "id": "s2-i20",
+      "text": "Coupling between W.D motor & gear box guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i21",
+      "text": "Coupling between W.D & gear box guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i22",
+      "text": "PVC extruder belts guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i23",
+      "text": "Wire drawer to annealer chain guard",
+      "badge": "BOLTED"
+    },
+    {
+      "id": "s2-i24",
+      "text": "Coupling between W.D. and ouput gearbox",
+      "badge": "BOLTED"
+    }
+  ]
+}
