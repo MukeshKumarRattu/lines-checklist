@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { AlertTriangle, Camera, ChevronLeft, ChevronRight, RefreshCw, X } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AlertTriangle, Camera, RefreshCw, X } from "lucide-react";
 import { useChecklists } from "@/hooks/useChecklists";
 import { fetchSubmissions, type ChecklistKind, type Submission } from "@/lib/api";
 import DatePicker from "@/components/DatePicker";
@@ -26,7 +26,7 @@ const noStatus = { sym: "○", cls: "text-muted-foreground" };
 const GRID =
   "grid grid-cols-[auto_1fr_auto_auto] sm:grid-cols-[auto_1fr_auto_1fr_auto] items-center gap-2 sm:gap-3";
 
-const PAGE_SIZE = 20;
+const BATCH = 50;
 
 const SubmissionsList = ({ lineId }: Props) => {
   const { lines } = useChecklists();
@@ -34,8 +34,9 @@ const SubmissionsList = ({ lineId }: Props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [openId, setOpenId] = useState<string | null>(null);
-  const [page, setPage] = useState(0);
+  const [limit, setLimit] = useState(BATCH); // infinite-scroll reveal window
   const [photo, setPhoto] = useState<string | null>(null); // defect-photo popup
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   // Filters
   const [kind, setKind] = useState<"" | ChecklistKind>("");
@@ -55,7 +56,7 @@ const SubmissionsList = ({ lineId }: Props) => {
           date: date || undefined,
         })
       );
-      setPage(0); // back to the first page whenever the result set changes
+      setLimit(BATCH); // reset the reveal window whenever the result set changes
     } catch (e) {
       setError(
         e instanceof Error
@@ -71,6 +72,22 @@ const SubmissionsList = ({ lineId }: Props) => {
     load();
   }, [load]);
 
+  // Infinite scroll — when the sentinel at the list's end scrolls into view,
+  // reveal another BATCH of rows. Re-observes on limit/result changes so it
+  // keeps loading while the sentinel stays in view.
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) setLimit((l) => l + BATCH);
+      },
+      { rootMargin: "300px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [rows.length, limit]);
+
   const controlCls =
     "h-8 rounded-md border border-input bg-card px-2.5 text-xs shadow-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20";
 
@@ -82,11 +99,9 @@ const SubmissionsList = ({ lineId }: Props) => {
   };
   const hasFilters = Boolean(kind || operator.trim() || date || (!lineId && lineFilter));
 
-  // Pagination (20 rows per page).
-  const pageCount = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
-  const safePage = Math.min(page, pageCount - 1);
-  const start = safePage * PAGE_SIZE;
-  const pageRows = rows.slice(start, start + PAGE_SIZE);
+  // Infinite scroll: reveal BATCH rows at a time, more as the user scrolls.
+  const visibleRows = rows.slice(0, limit);
+  const hasMore = limit < rows.length;
 
   return (
     <div className="container py-4">
@@ -169,7 +184,7 @@ const SubmissionsList = ({ lineId }: Props) => {
           </div>
 
           <ul className="divide-y divide-border">
-            {pageRows.map((r) => {
+            {visibleRows.map((r) => {
               const open = openId === r.id;
               const isSafety = (r.kind || "line") === "safety";
               return (
@@ -276,30 +291,13 @@ const SubmissionsList = ({ lineId }: Props) => {
         </div>
       )}
 
-      {!loading && !error && rows.length > PAGE_SIZE && (
-        <div className="mt-3 flex items-center justify-between gap-3 text-sm">
+      {!loading && !error && rows.length > 0 && (
+        <div className="mt-3 flex flex-col items-center gap-2 text-sm">
           <span className="text-muted-foreground">
-            {start + 1}–{Math.min(start + PAGE_SIZE, rows.length)} of {rows.length}
+            Showing {visibleRows.length} of {rows.length}
+            {hasMore ? " · scroll for more" : ""}
           </span>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setPage((p) => Math.max(0, p - 1))}
-              disabled={safePage === 0}
-              className="flex items-center gap-1 rounded-md border border-border bg-card px-3 py-1.5 font-medium shadow-sm hover:bg-accent disabled:opacity-40"
-            >
-              <ChevronLeft className="h-4 w-4" /> Previous
-            </button>
-            <span className="whitespace-nowrap text-muted-foreground">
-              Page {safePage + 1} of {pageCount}
-            </span>
-            <button
-              onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
-              disabled={safePage >= pageCount - 1}
-              className="flex items-center gap-1 rounded-md border border-border bg-card px-3 py-1.5 font-medium shadow-sm hover:bg-accent disabled:opacity-40"
-            >
-              Next <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
+          {hasMore && <div ref={sentinelRef} aria-hidden className="h-1 w-full" />}
         </div>
       )}
 

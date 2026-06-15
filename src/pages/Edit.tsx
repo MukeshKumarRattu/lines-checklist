@@ -657,6 +657,7 @@ const ChecklistEditor = () => {
 // ---------------------------------------------------------------------------
 // Submission manager — edit (operator / date / time / product) and delete.
 // ---------------------------------------------------------------------------
+const SUB_BATCH = 50; // submissions revealed per infinite-scroll batch
 const SubmissionManager = () => {
   const { data: lineCards } = useChecklists();
   const [rows, setRows] = useState<Submission[]>([]);
@@ -666,12 +667,15 @@ const SubmissionManager = () => {
   const [openId, setOpenId] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   const [filters, setFilters] = useState<SubmissionFilters>({});
+  const [limit, setLimit] = useState(SUB_BATCH); // infinite-scroll reveal window
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       setRows(await fetchSubmissions(filters));
+      setLimit(SUB_BATCH); // reset the reveal window when the result set changes
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not load submissions.");
     } finally {
@@ -682,6 +686,22 @@ const SubmissionManager = () => {
   useEffect(() => {
     load();
   }, [load]);
+
+  // Infinite scroll: reveal SUB_BATCH rows at a time as the sentinel scrolls in.
+  const visibleRows = rows.slice(0, limit);
+  const hasMore = limit < rows.length;
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) setLimit((l) => l + SUB_BATCH);
+      },
+      { rootMargin: "300px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [rows.length, limit]);
 
   const setFilter = (patch: Partial<SubmissionFilters>) =>
     setFilters((f) => ({ ...f, ...patch }));
@@ -790,7 +810,7 @@ const SubmissionManager = () => {
               </div>
 
               <ul className="divide-y divide-border">
-                {rows.map((r) => {
+                {visibleRows.map((r) => {
                   const isSafety = (r.kind || "line") === "safety";
                   const open = openId === r.id;
                   // closed → view ; view → closed ; editing → back to view
@@ -902,6 +922,16 @@ const SubmissionManager = () => {
               </ul>
             </div>
           </div>
+        </div>
+      )}
+
+      {!error && rows.length > 0 && (
+        <div className="mt-3 flex flex-col items-center gap-2 text-sm">
+          <span className="text-muted-foreground">
+            Showing {visibleRows.length} of {rows.length}
+            {hasMore ? " · scroll for more" : ""}
+          </span>
+          {hasMore && <div ref={sentinelRef} aria-hidden className="h-1 w-full" />}
         </div>
       )}
 
