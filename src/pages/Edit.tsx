@@ -69,13 +69,13 @@ type Tint = "green" | "amber" | "red";
 const STATUS_OPTS: Record<"line" | "safety", { key: string; label: string; tint: Tint }[]> = {
   line: [
     { key: "ok", label: "✓", tint: "green" },
-    { key: "fail", label: "✗", tint: "red" },
+    { key: "fail", label: "Issue", tint: "red" },
   ],
   safety: [
     { key: "good", label: "✓", tint: "green" },
-    { key: "X", label: "X", tint: "amber" },
-    { key: "R", label: "R", tint: "amber" },
-    { key: "M", label: "M", tint: "red" },
+    { key: "X", label: "Broken", tint: "amber" },
+    { key: "R", label: "Replaced", tint: "amber" },
+    { key: "M", label: "Missing", tint: "red" },
   ],
 };
 const ACTIVE_BTN: Record<Tint, string> = {

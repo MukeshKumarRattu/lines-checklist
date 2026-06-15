@@ -9,16 +9,18 @@ interface Props {
   lineId?: string;
 }
 
-// How each saved status renders in the detail view.
-const STATUS_VIEW: Record<string, { sym: string; cls: string }> = {
-  ok: { sym: "✓", cls: "text-emerald-600" },
-  good: { sym: "✓", cls: "text-emerald-600" },
-  fail: { sym: "✗", cls: "text-red-600 font-bold" },
-  X: { sym: "X", cls: "text-amber-600 font-bold" },
-  R: { sym: "R", cls: "text-amber-600 font-bold" },
-  M: { sym: "M", cls: "text-red-600 font-bold" },
+// How each saved status renders in the detail view. The row starts with a
+// status icon (✓ pass / ⚠ caution); flagged statuses also show a colored word
+// tag (Broken / Replaced / Missing / Issue) on the RIGHT of the row.
+const STATUS_VIEW: Record<string, { tag: string; tagCls: string; iconCls: string; flagged: boolean; cross?: boolean }> = {
+  ok: { tag: "", tagCls: "", iconCls: "text-emerald-600", flagged: false },
+  good: { tag: "", tagCls: "", iconCls: "text-emerald-600", flagged: false },
+  fail: { tag: "Issue", tagCls: "bg-red-100 text-red-700", iconCls: "text-red-600", flagged: true, cross: true },
+  X: { tag: "Broken", tagCls: "bg-amber-100 text-amber-700", iconCls: "text-amber-600", flagged: true },
+  R: { tag: "Replaced", tagCls: "bg-amber-100 text-amber-700", iconCls: "text-amber-600", flagged: true },
+  M: { tag: "Missing", tagCls: "bg-red-100 text-red-700", iconCls: "text-red-600", flagged: true, cross: true },
 };
-const noStatus = { sym: "○", cls: "text-muted-foreground" };
+const noStatus = { tag: "", tagCls: "", iconCls: "text-muted-foreground", flagged: false };
 
 // Shared grid template. On phones: Date/Time · Operator · Faults · Type-pill (the
 // count and Line cells are hidden, so the operator name gets room). From sm up the
@@ -248,7 +250,17 @@ const SubmissionsList = ({ lineId }: Props) => {
                               className="flex items-start justify-between gap-3 py-1 text-xs"
                             >
                               <span className="flex min-w-0 items-start gap-2">
-                                <span className={`w-4 flex-none text-center ${sv.cls}`}>{sv.sym}</span>
+                                {!it.status ? (
+                                  <span className="w-4 flex-none text-center text-muted-foreground/50">○</span>
+                                ) : sv.flagged ? (
+                                  sv.cross ? (
+                                    <span className={`w-4 flex-none text-center font-bold ${sv.iconCls}`}>✗</span>
+                                  ) : (
+                                    <AlertTriangle className={`mt-0.5 h-3.5 w-3.5 flex-none ${sv.iconCls}`} />
+                                  )
+                                ) : (
+                                  <span className={`w-4 flex-none text-center font-bold ${sv.iconCls}`}>✓</span>
+                                )}
                                 <span className="min-w-0">
                                   <span className={`uppercase ${it.status ? "" : "text-muted-foreground"}`}>
                                     {it.text}
@@ -269,6 +281,11 @@ const SubmissionsList = ({ lineId }: Props) => {
                                   >
                                     <Camera className="h-3.5 w-3.5" />
                                   </button>
+                                )}
+                                {sv.flagged && (
+                                  <span className={`flex-none rounded px-2 py-0.5 text-[10px] font-bold leading-none ${sv.tagCls}`}>
+                                    {sv.tag}
+                                  </span>
                                 )}
                                 {it.value ? (
                                   <span className="rounded-md bg-secondary px-2 py-0.5 text-xs font-semibold tabular-nums text-foreground">

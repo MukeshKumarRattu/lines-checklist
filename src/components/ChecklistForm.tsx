@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   AlertTriangle,
+  Ban,
   Camera,
   Check,
   Clock,
@@ -9,8 +10,11 @@ import {
   Lock,
   MessageSquarePlus,
   Printer,
+  RefreshCw,
   RotateCcw,
   Send,
+  Wrench,
+  type LucideIcon,
 } from "lucide-react";
 import { inputFields, type ChecklistData, type ChecklistItem, type LineCard } from "@/data/lines";
 import {
@@ -33,6 +37,8 @@ interface StatusDef {
   primary?: boolean; // toggled by tapping the row
   title: string;
   wide?: boolean; // render as an icon + word pill instead of a single-letter square
+  icon?: LucideIcon; // icon shown inside the wide pill
+  boxLabel?: string; // short glyph shown in the left status box (defaults to label)
 }
 
 // Per-checklist status options. The primary status is set by tapping the row;
@@ -40,13 +46,13 @@ interface StatusDef {
 const STATUS: Record<ChecklistKind, StatusDef[]> = {
   line: [
     { key: "ok", label: "✓", tint: "green", primary: true, title: "OK" },
-    { key: "fail", label: "Issue", tint: "red", title: "Mark this item as an issue / not right", wide: true },
+    { key: "fail", label: "Issue", tint: "red", title: "Mark this item as an issue / not right", wide: true, icon: AlertTriangle, boxLabel: "✗" },
   ],
   safety: [
     { key: "good", label: "✓", tint: "green", primary: true, title: "Good / Bolted / In place" },
-    { key: "X", label: "X", tint: "yellow", title: "Broken or needs repair" },
-    { key: "R", label: "R", tint: "yellow", title: "Replaced (previous operator did not install)" },
-    { key: "M", label: "M", tint: "red", title: "Missing" },
+    { key: "X", label: "Broken", tint: "yellow", title: "Broken or needs repair", wide: true, icon: Wrench, boxLabel: "X" },
+    { key: "R", label: "Replaced", tint: "yellow", title: "Replaced — previous operator did not install it", wide: true, icon: RefreshCw, boxLabel: "R" },
+    { key: "M", label: "Missing", tint: "red", title: "Missing — not present", wide: true, icon: Ban, boxLabel: "M" },
   ],
 };
 
@@ -722,7 +728,7 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
         )}
 
         {/* Items — single column on tablet/mobile, two columns on desktop (xl+) */}
-        <ul className="xl:columns-2 xl:gap-3">
+        <ul className={kind === "safety" ? "" : "xl:columns-2 xl:gap-3"}>
           {data.items.map((item, idx) => {
             const st = draft.items[item.id] ?? {};
             const def = defByKey(st.status);
@@ -753,7 +759,7 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
                           def ? BTN_ACTIVE[def.tint] : "border-input bg-card"
                         }`}
                       >
-                        {def ? def.primary ? <Check className="h-3.5 w-3.5" /> : def.wide ? "✗" : def.label : null}
+                        {def ? def.primary ? <Check className="h-3.5 w-3.5" /> : (def.boxLabel ?? def.label) : null}
                       </button>
                       <button
                         onClick={() => togglePhotoRow(item.id)}
@@ -778,7 +784,7 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
                           def ? BTN_ACTIVE[def.tint] : "border-input bg-card"
                         }`}
                       >
-                        {def ? def.primary ? <Check className="h-3.5 w-3.5" /> : def.wide ? "✗" : def.label : null}
+                        {def ? def.primary ? <Check className="h-3.5 w-3.5" /> : (def.boxLabel ?? def.label) : null}
                       </span>
                       <span className="w-4 flex-none text-[11px] text-muted-foreground">{idx + 1}</span>
                       <span className="text-xs uppercase leading-tight">{item.text}</span>
@@ -808,12 +814,26 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
                       />
                     )}
 
+                    {/* Defect photo — sits in front of the status pills; only shown
+                        once the guard is marked Broken or Replaced. */}
+                    {kind === "safety" && (st.status === "X" || st.status === "R") && (
+                      <button
+                        type="button"
+                        onClick={() => capturePhoto(item.id)}
+                        title="Take a photo of the defect (saved to Defected Guards)"
+                        className="relative flex h-7 w-7 flex-none items-center justify-center rounded-md border border-amber-500 bg-amber-500 text-white transition-colors hover:opacity-90"
+                      >
+                        <Camera className="h-3.5 w-3.5" />
+                      </button>
+                    )}
+
                     {secondary.map((s) => {
                       const active = st.status === s.key;
                       // `wide` statuses (e.g. the line-checklist "Issue") render as an
                       // icon + word pill so the operator can read what it does, instead
                       // of a bare single-letter square.
                       if (s.wide) {
+                        const PillIcon = s.icon ?? AlertTriangle;
                         return (
                           <button
                             key={s.key}
@@ -823,7 +843,7 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
                               active ? BTN_ACTIVE[s.tint] : "border-transparent bg-card text-muted-foreground hover:bg-accent"
                             }`}
                           >
-                            <AlertTriangle className="h-3.5 w-3.5" />
+                            <PillIcon className="h-3.5 w-3.5" />
                             {s.label}
                           </button>
                         );
@@ -841,31 +861,6 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
                         </button>
                       );
                     })}
-
-                    {kind === "safety" &&
-                      (() => {
-                        // Defect photos are only allowed when the guard is marked X or R.
-                        const canCapture = st.status === "X" || st.status === "R";
-                        return (
-                          <button
-                            type="button"
-                            onClick={() => canCapture && capturePhoto(item.id)}
-                            disabled={!canCapture}
-                            title={
-                              canCapture
-                                ? "Take a photo of the defect (saved to Defected Guards)"
-                                : "Mark this guard X or R to add a defect photo"
-                            }
-                            className={`relative flex h-7 w-7 flex-none items-center justify-center rounded-md border transition-colors ${
-                              canCapture
-                                ? "border-amber-500 bg-amber-500 text-white hover:opacity-90"
-                                : "cursor-not-allowed border-input bg-card text-muted-foreground/40"
-                            }`}
-                          >
-                            <Camera className="h-3.5 w-3.5" />
-                          </button>
-                        );
-                      })()}
 
                     <button
                       onClick={() => setOpenComments((o) => ({ ...o, [item.id]: !showComment }))}
@@ -914,17 +909,6 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
             );
           })}
         </ul>
-
-        {data.legend && data.legend.length > 0 && (
-          <div className="mt-4 rounded-lg border border-border bg-card p-3 text-xs text-muted-foreground shadow-sm">
-            <div className="mb-1 font-semibold uppercase tracking-wide text-foreground">Legend</div>
-            <ul className="space-y-0.5">
-              {data.legend.map((l, i) => (
-                <li key={i}>{l}</li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
 
       {/* Submit bar */}
