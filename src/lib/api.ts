@@ -4,7 +4,8 @@
 
 import type { LineCard } from "@/data/lines";
 
-export type ChecklistKind = "line" | "safety";
+// "supervisor" = one walk-round over every line's safety guards (+ water on floor).
+export type ChecklistKind = "line" | "safety" | "supervisor";
 
 // status: "" (none) | line: "ok" | "fail" | safety: "good" | "X" | "R" | "M"
 export interface SubmissionItem {
@@ -164,4 +165,205 @@ export async function uploadGuardPhoto(payload: {
 export async function deleteGuardPhoto(id: string): Promise<void> {
   const res = await fetch(`/api/guard-photos/${id}`, { method: "DELETE" });
   if (!res.ok) throw new Error(`Delete failed (HTTP ${res.status})`);
+}
+
+// --- Maintenance tickets (raised from the line checklist) --------------------
+
+export type TicketStatus = "open" | "closed";
+
+export interface MaintenanceTicket {
+  id: string;
+  createdAt: string;
+  status: TicketStatus;
+  line: string;
+  lineName: string;
+  issue: string; // e.g. "Water on floor", "Broken guard", "New guard needed"
+  location?: string; // guard tickets: the guard
+  itemId?: string;
+  source: string;
+  attempted: string; // attempted resolutions, and by whom
+  operator: string;
+  photoUrl?: string;
+  submissionId?: string;
+  closedAt?: string;
+  closedBy?: string;
+  closeNote?: string;
+}
+
+export async function fetchMaintenanceTickets(
+  params: { status?: TicketStatus; line?: string } = {}
+): Promise<MaintenanceTicket[]> {
+  const qs = new URLSearchParams();
+  if (params.status) qs.set("status", params.status);
+  if (params.line) qs.set("line", params.line);
+  const suffix = qs.toString() ? `?${qs.toString()}` : "";
+  const res = await fetch(`/api/maintenance${suffix}`);
+  if (!res.ok) throw new Error(`Failed to load maintenance tickets (HTTP ${res.status})`);
+  return res.json();
+}
+
+export async function createMaintenanceTicket(payload: {
+  line: string;
+  lineName: string;
+  issue: string;
+  location?: string;
+  itemId?: string;
+  source: string;
+  attempted: string;
+  operator: string;
+  photoUrl?: string; // guard-photo URL; the server keeps its own copy
+  submissionId?: string;
+}): Promise<MaintenanceTicket> {
+  const res = await fetch("/api/maintenance", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const msg = await res.json().catch(() => ({}));
+    throw new Error(msg.error || `Ticket failed (HTTP ${res.status})`);
+  }
+  return res.json();
+}
+
+export async function updateMaintenanceTicket(
+  id: string,
+  payload: { status: TicketStatus; closedBy?: string; closeNote?: string }
+): Promise<MaintenanceTicket> {
+  const res = await fetch(`/api/maintenance/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const msg = await res.json().catch(() => ({}));
+    throw new Error(msg.error || `Update failed (HTTP ${res.status})`);
+  }
+  return res.json();
+}
+
+// --- Investigations ------------------------------------------------------------
+// "not-corrected": a guard found Missing / not installed properly and not fixed.
+// "fake-log": the operator ticked a guard Good, then the supervisor walk-round
+// (within 6 h) found it Broken / Missing / not installed.
+
+export type InvestigationType = "not-corrected" | "fake-log";
+
+export interface Investigation {
+  id: string;
+  createdAt: string;
+  status: TicketStatus;
+  type: InvestigationType;
+  line: string;
+  lineName: string;
+  itemId?: string;
+  location: string; // the guard
+  finding: string; // "Missing" | "Not installed properly" | "Broken"
+  foundBy: string;
+  foundByRole: "operator" | "supervisor";
+  note: string;
+  photoUrl?: string;
+  submissionId?: string;
+  operator?: string; // fake-log: who ticked it Good
+  operatorSubmissionId?: string;
+  operatorAt?: string;
+  closedAt?: string;
+  closedBy?: string;
+  outcome?: string;
+}
+
+export async function fetchInvestigations(
+  params: { status?: TicketStatus; line?: string; type?: InvestigationType } = {}
+): Promise<Investigation[]> {
+  const qs = new URLSearchParams();
+  if (params.status) qs.set("status", params.status);
+  if (params.line) qs.set("line", params.line);
+  if (params.type) qs.set("type", params.type);
+  const suffix = qs.toString() ? `?${qs.toString()}` : "";
+  const res = await fetch(`/api/investigations${suffix}`);
+  if (!res.ok) throw new Error(`Failed to load investigations (HTTP ${res.status})`);
+  return res.json();
+}
+
+export async function createInvestigation(
+  payload: Omit<Investigation, "id" | "createdAt" | "status" | "closedAt" | "closedBy" | "outcome">
+): Promise<Investigation> {
+  const res = await fetch("/api/investigations", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const msg = await res.json().catch(() => ({}));
+    throw new Error(msg.error || `Investigation failed (HTTP ${res.status})`);
+  }
+  return res.json();
+}
+
+export async function updateInvestigation(
+  id: string,
+  payload: { status: TicketStatus; closedBy?: string; outcome?: string }
+): Promise<Investigation> {
+  const res = await fetch(`/api/investigations/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const msg = await res.json().catch(() => ({}));
+    throw new Error(msg.error || `Update failed (HTTP ${res.status})`);
+  }
+  return res.json();
+}
+
+// --- Shift-report email ------------------------------------------------------------
+
+export interface EmailRecipient {
+  email: string;
+  name?: string;
+  active: boolean;
+}
+
+export interface EmailSettings {
+  recipients: EmailRecipient[];
+  auto: boolean; // email the daily (07:00 → 07:00) report at 07:05
+  smtp: { host?: string; port?: number; user?: string; pass?: string; from?: string; passSet?: boolean };
+  lastSentKey?: string;
+  lastSentAt?: number;
+  lastError?: string | null;
+}
+
+export async function fetchEmailSettings(): Promise<EmailSettings> {
+  const res = await fetch("/api/email-settings");
+  if (!res.ok) throw new Error(`Failed to load email settings (HTTP ${res.status})`);
+  return res.json();
+}
+
+export async function saveEmailSettings(cfg: EmailSettings): Promise<EmailSettings> {
+  const res = await fetch("/api/email-settings", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(cfg),
+  });
+  if (!res.ok) throw new Error(`Failed to save email settings (HTTP ${res.status})`);
+  return res.json();
+}
+
+/** The daily report (07:00 → 07:00 of `day`) as email-ready HTML — the page shows the same. */
+export async function fetchDailyReport(day: string): Promise<{ subject: string; html: string }> {
+  const res = await fetch(`/api/shift-report?day=${encodeURIComponent(day)}`);
+  if (!res.ok) throw new Error(`Failed to load the report (HTTP ${res.status})`);
+  return res.json();
+}
+
+/** Email the daily report to the active recipients, or only to `testTo`. */
+export async function emailShiftReport(day: string, testTo?: string): Promise<string[]> {
+  const res = await fetch("/api/email-report", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ day, testTo }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error || `Send failed (HTTP ${res.status})`);
+  return body.sent;
 }

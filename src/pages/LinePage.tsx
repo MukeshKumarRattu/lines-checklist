@@ -16,7 +16,8 @@ const LinePage = () => {
   const { getLine } = useChecklists();
   const line = getLine(lineId);
   const [params, setParams] = useSearchParams();
-  const tab = (params.get("tab") as Tab) || "checklist";
+  const safetyOnly = !!line && line.data.items.length === 0;
+  const tab = (params.get("tab") as Tab) || (safetyOnly ? "safety" : "checklist");
 
   if (!line) {
     return (
@@ -47,7 +48,7 @@ const LinePage = () => {
           <h1 className="text-sm font-semibold tracking-tight">{line.name}</h1>
         </div>
         <div className="container flex gap-1 overflow-x-auto">
-          {TABS.map((t) => (
+          {TABS.filter((t) => !(safetyOnly && t.id === "checklist")).map((t) => (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}

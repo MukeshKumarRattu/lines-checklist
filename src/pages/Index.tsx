@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
-import { Camera, ClipboardList, ImagePlus, Inbox, Pencil } from "lucide-react";
+import { useEffect, useState } from "react";
+import { BarChart3, Camera, ClipboardList, ImagePlus, Inbox, Pencil, ShieldCheck, Wrench } from "lucide-react";
+import { fetchMaintenanceTickets } from "@/lib/api";
 import { useChecklists } from "@/hooks/useChecklists";
 import { useGuardPhotoBadges } from "@/hooks/useGuardPhotoBadges";
 
 const Index = () => {
   const { lines } = useChecklists();
   const { total: newPhotos } = useGuardPhotoBadges();
+  const [openTickets, setOpenTickets] = useState(0);
+  useEffect(() => {
+    fetchMaintenanceTickets({ status: "open" })
+      .then((t) => setOpenTickets(t.length))
+      .catch(() => {}); // badge is optional
+  }, []);
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-10 border-b border-border bg-card/80 backdrop-blur">
@@ -48,6 +56,38 @@ const Index = () => {
             >
               <ImagePlus className="h-3.5 w-3.5 flex-none" />{" "}
               <span className="hidden sm:inline">Assign Photos</span>
+            </Link>
+            <Link
+              to="/supervisor"
+              aria-label="Supervisor"
+              className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5 text-sm font-medium text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-foreground sm:px-3"
+            >
+              <ShieldCheck className="h-3.5 w-3.5 flex-none" />{" "}
+              <span className="hidden sm:inline">Supervisor</span>
+            </Link>
+            <Link
+              to="/summary"
+              aria-label="Summary"
+              className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5 text-sm font-medium text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-foreground sm:px-3"
+            >
+              <BarChart3 className="h-3.5 w-3.5 flex-none" />{" "}
+              <span className="hidden sm:inline">Summary</span>
+            </Link>
+            <Link
+              to="/maintenance"
+              aria-label="Maintenance"
+              className="relative flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5 text-sm font-medium text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-foreground sm:px-3"
+            >
+              <Wrench className="h-3.5 w-3.5 flex-none" />{" "}
+              <span className="hidden sm:inline">Maintenance</span>
+              {openTickets > 0 && (
+                <span
+                  title={`${openTickets} open`}
+                  className="absolute -right-1.5 -top-1.5 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-none text-white shadow"
+                >
+                  {openTickets}
+                </span>
+              )}
             </Link>
             <Link
               to="/submissions"
