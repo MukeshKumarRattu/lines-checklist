@@ -100,10 +100,6 @@
       "text": "WATER LEVEL IN RESERVOIR"
     },
     {
-      "id": "l12-i23",
-      "text": "AISLE CLEAR - NO WATER ON FLOOR"
-    },
-    {
       "id": "l12-i24",
       "text": "EXTRUDER SPEED"
     },

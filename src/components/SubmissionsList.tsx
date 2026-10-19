@@ -133,6 +133,7 @@ const SubmissionsList = ({ lineId }: Props) => {
           <option value="">All types</option>
           <option value="line">Line checklist</option>
           <option value="safety">Safety guards</option>
+          <option value="supervisor">Supervisor walk-round</option>
         </select>
         <input
           aria-label="Operator"
@@ -189,6 +190,7 @@ const SubmissionsList = ({ lineId }: Props) => {
             {visibleRows.map((r) => {
               const open = openId === r.id;
               const isSafety = (r.kind || "line") === "safety";
+              const isSup = r.kind === "supervisor";
               return (
                 <li key={r.id} className={open ? "bg-accent" : "even:bg-muted/40"}>
                   <button
@@ -216,12 +218,16 @@ const SubmissionsList = ({ lineId }: Props) => {
                     <span className="flex items-center justify-end gap-2 whitespace-nowrap text-xs text-muted-foreground">
                       <span
                         className={`whitespace-nowrap rounded px-1.5 py-0.5 text-[11px] font-medium ${
-                          isSafety ? "bg-amber-100 text-amber-700" : "bg-indigo-100 text-indigo-700"
+                          isSup
+                            ? "bg-violet-100 text-violet-700"
+                            : isSafety
+                              ? "bg-amber-100 text-amber-700"
+                              : "bg-indigo-100 text-indigo-700"
                         }`}
                       >
-                        <span className="sm:hidden">{isSafety ? "Safety" : "Line"}</span>
+                        <span className="sm:hidden">{isSup ? "Supervisor" : isSafety ? "Safety" : "Line"}</span>
                         <span className="hidden sm:inline">
-                          {isSafety ? "Safety guards" : "Line checklist"}
+                          {isSup ? "Supervisor walk-round" : isSafety ? "Safety guards" : "Line checklist"}
                         </span>
                       </span>
                       <span className="hidden tabular-nums sm:inline">
@@ -273,7 +279,7 @@ const SubmissionsList = ({ lineId }: Props) => {
                                 </span>
                               </span>
                               <span className="flex flex-none items-center gap-2">
-                                {(it.status === "X" || it.status === "R") && it.photoUrl && (
+                                {it.photoUrl && (
                                   <button
                                     onClick={() => setPhoto(it.photoUrl!)}
                                     title="View defect photo"

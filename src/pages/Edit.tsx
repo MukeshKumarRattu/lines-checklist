@@ -755,6 +755,7 @@ const SubmissionManager = () => {
           <option value="">All types</option>
           <option value="line">Line checklist</option>
           <option value="safety">Safety guards</option>
+          <option value="supervisor">Supervisor walk-round</option>
         </select>
         <input
           aria-label="Operator"
@@ -960,8 +961,10 @@ const SubmissionView = ({
   onEdit: () => void;
   onClose: () => void;
 }) => {
-  const kind: "line" | "safety" = (rec.kind || "line") === "safety" ? "safety" : "line";
-  const opts = STATUS_OPTS[kind];
+  const isSup = rec.kind === "supervisor";
+  const kind: "line" | "safety" = (rec.kind || "line") === "line" ? "line" : "safety";
+  // Supervisor walk-rounds hold guard marks AND water-on-floor ok/fail.
+  const opts = isSup ? [...STATUS_OPTS.safety, ...STATUS_OPTS.line] : STATUS_OPTS[kind];
   const optOf = (status: string) => opts.find((o) => o.key === status);
   const fieldKeys = Object.keys(rec.fields || {});
   const [photo, setPhoto] = useState<string | null>(null); // defect-photo popup
@@ -974,7 +977,7 @@ const SubmissionView = ({
         <p className="min-w-0 truncate text-xs font-semibold">
           {rec.operator || "report"}
           <span className="font-normal text-muted-foreground">
-            {" "}· {kind === "safety" ? "Safety Guards" : "Line Checklist"} · {rec.date} {rec.time} ·{" "}
+            {" "}· {isSup ? "Supervisor walk-round" : kind === "safety" ? "Safety Guards" : "Line Checklist"} · {rec.date} {rec.time} ·{" "}
             {rec.completed}/{rec.total} done
             {rec.issues > 0 ? ` · ${rec.issues} fault${rec.issues === 1 ? "" : "s"}` : ""}
           </span>
@@ -1032,7 +1035,7 @@ const SubmissionView = ({
                     “{it.comment}”
                   </span>
                 ) : null}
-                {(it.status === "X" || it.status === "R") && it.photoUrl && (
+                {it.photoUrl && (
                   <button
                     onClick={() => setPhoto(it.photoUrl!)}
                     title="View defect photo"
@@ -1093,9 +1096,13 @@ const SubmissionEditor = ({
   const [err, setErr] = useState<string | null>(null);
   const [photo, setPhoto] = useState<string | null>(null); // defect-photo popup
 
-  const kind: "line" | "safety" = (rec.kind || "line") === "safety" ? "safety" : "line";
-  const opts = STATUS_OPTS[kind];
+  const isSup = rec.kind === "supervisor";
+  const kind: "line" | "safety" = (rec.kind || "line") === "line" ? "line" : "safety";
+  const opts = isSup ? [...STATUS_OPTS.safety, ...STATUS_OPTS.line] : STATUS_OPTS[kind];
   const tintOf = (status: string) => opts.find((o) => o.key === status)?.tint;
+  // Buttons per row: a supervisor's water row edits as ok/Issue, guards as guard marks.
+  const optsFor = (id: string) =>
+    isSup ? (id.endsWith("water-on-floor") ? STATUS_OPTS.line : STATUS_OPTS.safety) : opts;
 
   const setStatus = (i: number, key: string) =>
     setItems((prev) =>
@@ -1134,7 +1141,7 @@ const SubmissionEditor = ({
         <p className="min-w-0 truncate text-xs font-semibold">
           Editing {rec.operator || "report"}
           <span className="font-normal text-muted-foreground">
-            {" "}· {kind === "safety" ? "Safety Guards" : "Line Checklist"} · {marked}/{items.length} marked
+            {" "}· {isSup ? "Supervisor walk-round" : kind === "safety" ? "Safety Guards" : "Line Checklist"} · {marked}/{items.length} marked
           </span>
         </p>
         <button
@@ -1166,7 +1173,7 @@ const SubmissionEditor = ({
                       <span className="w-4 flex-none text-[11px] text-muted-foreground">{i + 1}</span>
                       <span className="min-w-0 flex-1 text-xs uppercase leading-tight">{it.text}</span>
                       <div className="flex flex-none items-center gap-1">
-                        {opts.map((o) => {
+                        {optsFor(it.id).map((o) => {
                           const active = it.status === o.key;
                           return (
                             <button

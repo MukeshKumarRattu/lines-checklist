@@ -6,6 +6,7 @@ import {
   Camera,
   Check,
   Clock,
+  Droplets,
   Loader2,
   Lock,
   MessageSquarePlus,
@@ -18,6 +19,7 @@ import {
 } from "lucide-react";
 import { inputFields, type ChecklistData, type ChecklistItem, type LineCard } from "@/data/lines";
 import {
+  createMaintenanceTicket,
   deleteGuardPhoto,
   fetchGuardPhotos,
   submitChecklist,
@@ -28,9 +30,11 @@ import {
 } from "@/lib/api";
 import { compressImage } from "@/lib/image";
 import ConfirmDialog from "@/components/ConfirmDialog";
+import GuardFollowUp from "@/components/GuardFollowUp";
+import { followUpMissing, followUpText, joinComment, raiseGuardFollowUps } from "@/lib/followups";
 
 type Tint = "green" | "yellow" | "red";
-interface StatusDef {
+export interface StatusDef {
   key: string;
   label: string;
   tint: Tint;
@@ -43,26 +47,28 @@ interface StatusDef {
 
 // Per-checklist status options. The primary status is set by tapping the row;
 // the others render as small buttons after the value field.
-const STATUS: Record<ChecklistKind, StatusDef[]> = {
+const SAFETY_STATUS: StatusDef[] = [
+  { key: "good", label: "✓", tint: "green", primary: true, title: "Good / Bolted / In place" },
+  { key: "X", label: "Broken", tint: "yellow", title: "Broken or needs repair", wide: true, icon: Wrench, boxLabel: "X" },
+  { key: "R", label: "Replaced", tint: "yellow", title: "Replaced — previous operator did not install it", wide: true, icon: RefreshCw, boxLabel: "R" },
+  { key: "M", label: "Missing", tint: "red", title: "Missing — not present", wide: true, icon: Ban, boxLabel: "M" },
+];
+export const STATUS: Record<ChecklistKind, StatusDef[]> = {
   line: [
     { key: "ok", label: "✓", tint: "green", primary: true, title: "OK" },
     { key: "fail", label: "Issue", tint: "red", title: "Mark this item as an issue / not right", wide: true, icon: AlertTriangle, boxLabel: "✗" },
   ],
-  safety: [
-    { key: "good", label: "✓", tint: "green", primary: true, title: "Good / Bolted / In place" },
-    { key: "X", label: "Broken", tint: "yellow", title: "Broken or needs repair", wide: true, icon: Wrench, boxLabel: "X" },
-    { key: "R", label: "Replaced", tint: "yellow", title: "Replaced — previous operator did not install it", wide: true, icon: RefreshCw, boxLabel: "R" },
-    { key: "M", label: "Missing", tint: "red", title: "Missing — not present", wide: true, icon: Ban, boxLabel: "M" },
-  ],
+  safety: SAFETY_STATUS,
+  supervisor: SAFETY_STATUS,
 };
 
-const ROW_TINT: Record<Tint | "none", string> = {
+export const ROW_TINT: Record<Tint | "none", string> = {
   none: "border-border bg-card",
   green: "border-emerald-500/40 bg-emerald-50",
   yellow: "border-amber-500/50 bg-amber-50",
   red: "border-red-500/40 bg-red-50",
 };
-const BTN_ACTIVE: Record<Tint, string> = {
+export const BTN_ACTIVE: Record<Tint, string> = {
   green: "border-emerald-500 bg-emerald-500 text-white",
   yellow: "border-amber-500 bg-amber-500 text-white",
   red: "border-red-500 bg-red-500 text-white",
@@ -72,6 +78,9 @@ interface ItemState {
   status?: string;
   value?: string;
   comment?: string;
+  fixed?: "yes" | "no"; // water on floor only — "no" raises a maintenance ticket
+  newGuard?: "yes" | "no"; // safety, Missing: needs a new guard → maintenance
+  corrected?: "yes" | "no"; // safety, Missing / Replaced: "no" → investigation
 }
 interface DraftState {
   operator: string;
@@ -79,6 +88,11 @@ interface DraftState {
   items: Record<string, ItemState>;
 }
 const emptyDraft: DraftState = { operator: "", fields: {}, items: {} };
+
+// Asked on EVERY line checklist regardless of the sheet's own items. "Yes" is
+// stored as an Issue ("fail") and opens a dialog for the source of the water and
+// what was tried to fix it; "No" is stored as OK.
+export const WATER_ITEM: ChecklistItem = { id: "water-on-floor", text: "WATER ON FLOOR?" };
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const localDate = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
@@ -186,6 +200,173 @@ const GuardPhotoPanel = ({
   );
 };
 
+// Opened when the operator answers "Yes" to Water on floor. Both are free-text and required.
+export const WaterDialog = ({
+  source: initialSource,
+  resolution: initialResolution,
+  fixed: initialFixed,
+  photoUrl,
+  photoBusy,
+  onCapturePhoto,
+  onRemovePhoto,
+  onCancel,
+  onSave,
+}: {
+  source: string;
+  resolution: string;
+  fixed?: "yes" | "no";
+  photoUrl?: string;
+  photoBusy: boolean;
+  onCapturePhoto: () => void;
+  onRemovePhoto: () => void;
+  onCancel: () => void;
+  onSave: (source: string, resolution: string, fixed: "yes" | "no") => void;
+}) => {
+  const [source, setSource] = useState(initialSource);
+  const [resolution, setResolution] = useState(initialResolution);
+  const [fixed, setFixed] = useState<"yes" | "no" | undefined>(initialFixed);
+  const [tried, setTried] = useState(false);
+  const srcBad = tried && !source.trim();
+  const resBad = tried && !resolution.trim();
+  const fixedBad = tried && !fixed;
+  const inputCls = (bad: boolean) =>
+    `w-full rounded-md border px-3 py-2 text-sm outline-none ${
+      bad
+        ? "border-red-500 bg-red-50 placeholder:text-red-400 focus:ring-2 focus:ring-red-500/30"
+        : "border-input bg-card focus:border-primary focus:ring-2 focus:ring-primary/20"
+    }`;
+  const save = () => {
+    setTried(true);
+    if (source.trim() && resolution.trim() && fixed) onSave(source.trim(), resolution.trim(), fixed);
+  };
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4" onClick={onCancel}>
+      <div
+        className="w-full max-w-md rounded-2xl border border-border bg-card p-5 shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center gap-3">
+          <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-sky-100 text-sky-600">
+            <Droplets className="h-5 w-5" />
+          </span>
+          <h3 className="text-sm font-semibold">Water on floor</h3>
+        </div>
+        <label className="mt-4 block">
+          <span className="mb-1 block text-xs font-semibold">
+            Source of water <span className="text-destructive">*</span>
+          </span>
+          <textarea
+            autoFocus
+            rows={2}
+            value={source}
+            onChange={(e) => setSource(e.target.value)}
+            placeholder="Where is the water coming from?"
+            className={inputCls(srcBad)}
+          />
+        </label>
+        <label className="mt-3 block">
+          <span className="mb-1 block text-xs font-semibold">
+            Attempted resolutions, and by whom <span className="text-destructive">*</span>
+          </span>
+          <textarea
+            rows={3}
+            value={resolution}
+            onChange={(e) => setResolution(e.target.value)}
+            placeholder="What was done to fix it, and who did it"
+            className={inputCls(resBad)}
+          />
+        </label>
+        <div className="mt-3">
+          <span className="mb-1 block text-xs font-semibold">
+            Is the problem fixed? <span className="text-destructive">*</span>
+          </span>
+          <div className={`flex gap-2 rounded-md ${fixedBad ? "ring-2 ring-red-500/60" : ""}`}>
+            <button
+              type="button"
+              onClick={() => setFixed("yes")}
+              className={`h-9 flex-1 rounded-md border text-sm font-semibold transition-colors ${
+                fixed === "yes" ? BTN_ACTIVE.green : "border-input bg-card text-muted-foreground hover:bg-accent"
+              }`}
+            >
+              Yes, fixed
+            </button>
+            <button
+              type="button"
+              onClick={() => setFixed("no")}
+              className={`h-9 flex-1 rounded-md border text-sm font-semibold transition-colors ${
+                fixed === "no" ? BTN_ACTIVE.red : "border-input bg-card text-muted-foreground hover:bg-accent"
+              }`}
+            >
+              No, not fixed
+            </button>
+          </div>
+          {fixed === "no" && (
+            <p className="mt-2 flex items-start gap-1.5 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1.5 text-xs font-medium text-amber-800">
+              <Wrench className="mt-0.5 h-3.5 w-3.5 flex-none" />
+              A maintenance ticket (with the photo) will be sent when you submit this checklist.
+            </p>
+          )}
+        </div>
+        <div className="mt-3">
+          <span className="mb-1 block text-xs font-semibold">Photo (optional)</span>
+          {photoUrl ? (
+            <div className="flex items-center gap-3">
+              <img src={photoUrl} alt="Water on floor" className="h-20 w-auto rounded border border-border object-cover" />
+              <div className="flex flex-col items-start gap-1.5">
+                <button
+                  type="button"
+                  onClick={onCapturePhoto}
+                  disabled={photoBusy}
+                  className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs font-medium hover:bg-accent disabled:opacity-50"
+                >
+                  {photoBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Camera className="h-3.5 w-3.5" />}
+                  Retake
+                </button>
+                <button
+                  type="button"
+                  onClick={onRemovePhoto}
+                  className="text-xs font-medium text-red-600 underline underline-offset-2"
+                >
+                  Remove photo
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={onCapturePhoto}
+              disabled={photoBusy}
+              className="flex items-center gap-2 rounded-md border border-sky-500 bg-sky-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+            >
+              {photoBusy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+              {photoBusy ? "Uploading…" : "Take / attach photo"}
+            </button>
+          )}
+        </div>
+        {(srcBad || resBad || fixedBad) && (
+          <p className="mt-2 text-sm font-medium text-destructive">
+            Fill in both fields and answer whether it is fixed.
+          </p>
+        )}
+        <div className="mt-5 flex justify-end gap-2">
+          <button
+            onClick={onCancel}
+            className="rounded-md border border-border bg-card px-3 py-2 text-sm font-medium hover:bg-accent"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={save}
+            className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-90"
+          >
+            <Check className="h-4 w-4" /> Save
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ChecklistForm = ({ line, data, kind }: Props) => {
   const draftKey = `lines-checklist:draft:${kind}-${line.id}`;
   const defs = STATUS[kind];
@@ -203,6 +384,8 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
   const [triedSubmit, setTriedSubmit] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
   const [confirmIncomplete, setConfirmIncomplete] = useState(false);
+  const [waterOpen, setWaterOpen] = useState(false);
+  const [waterPhotoBusy, setWaterPhotoBusy] = useState(false);
   const navigate = useNavigate();
 
   // Guard photos (safety only). The form only ever READS reference photos (the
@@ -257,6 +440,16 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
     setExpandedId((cur) => (cur === id ? null : id));
   };
   // Camera icon (enabled only when X/R is marked) → capture a defect photo.
+  // Camera on the water question → attach a photo of the water (uploaded on pick).
+  const captureWaterPhoto = () => {
+    pickItemRef.current = WATER_ITEM.id;
+    fileInputRef.current?.click();
+  };
+  const removeWaterPhoto = () => {
+    const rec = capturedPhotos[WATER_ITEM.id];
+    if (rec) void deleteGuardPhoto(rec.id).catch(() => {});
+    setCapturedPhotos(({ [WATER_ITEM.id]: _, ...rest }) => rest);
+  };
   const capturePhoto = (id: string) => {
     setPhotoErr(null);
     setPendingId(null);
@@ -272,6 +465,29 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
     const id = pickItemRef.current;
     if (!file || !id) return;
     setPhotoErr(null);
+    if (id === WATER_ITEM.id) {
+      setWaterPhotoBusy(true);
+      try {
+        const rec = await uploadGuardPhoto({
+          line: line.id,
+          itemId: id,
+          itemText: WATER_ITEM.text,
+          operator: draft.operator.trim(),
+          image: await compressImage(file),
+          kind: "defect",
+          status: "fail",
+        });
+        // Replacing an earlier water photo: drop the old one from the store.
+        const old = capturedPhotos[id];
+        if (old) void deleteGuardPhoto(old.id).catch(() => {});
+        setCapturedPhotos((c) => ({ ...c, [id]: rec }));
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "Photo upload failed.");
+      } finally {
+        setWaterPhotoBusy(false);
+      }
+      return;
+    }
     try {
       const url = await compressImage(file);
       setPendingId(id);
@@ -339,18 +555,25 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
     localStorage.setItem(draftKey, JSON.stringify(draft));
   }, [draftKey, draft]);
 
-  const total = data.items.length;
+  // The sheet's items plus the built-in water question (line checklists only).
+  const items = useMemo(
+    () => (kind === "line" ? [...data.items, WATER_ITEM] : data.items),
+    [kind, data.items]
+  );
+  const water = draft.items[WATER_ITEM.id] ?? {};
+
+  const total = items.length;
   const done = useMemo(
-    () => data.items.filter((i) => draft.items[i.id]?.status).length,
-    [data.items, draft.items]
+    () => items.filter((i) => draft.items[i.id]?.status).length,
+    [items, draft.items]
   );
   const issues = useMemo(
     () =>
-      data.items.filter((i) => {
+      items.filter((i) => {
         const def = defByKey(draft.items[i.id]?.status);
         return def && def.tint !== "green";
       }).length,
-    [data.items, draft.items] // eslint-disable-line react-hooks/exhaustive-deps
+    [items, draft.items] // eslint-disable-line react-hooks/exhaustive-deps
   );
   const productFields = inputFields(data);
   const pct = total ? Math.round((done / total) * 100) : 0;
@@ -372,7 +595,11 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
       const cur = d.items[id]?.status;
       return {
         ...d,
-        items: { ...d.items, [id]: { ...d.items[id], status: cur === key ? undefined : key } },
+        // Follow-up answers belong to the old status — clear them on change.
+        items: {
+          ...d.items,
+          [id]: { ...d.items[id], status: cur === key ? undefined : key, newGuard: undefined, corrected: undefined },
+        },
       };
     });
 
@@ -417,7 +644,7 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
       .map((l) => `<tr><td class="hlabel" colspan="${leftCols}">${esc(l)}</td>${blanks()}</tr>`)
       .join("");
 
-    const itemRows = data.items
+    const itemRows = items
       .map((it, i) =>
         isSafety
           ? `<tr><td class="num">${i + 1}</td><td class="item">${esc(it.text)}</td><td class="exp">${
@@ -511,6 +738,12 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
       setError("Enter the operator name before submitting.");
       return;
     }
+    // Water on floor = Yes needs both the source and what was done about it.
+    if (water.status === "fail" && (!water.value?.trim() || !water.comment?.trim() || !water.fixed)) {
+      setError("Water on floor: enter the source, the attempted resolutions and whether it is fixed.");
+      setWaterOpen(true);
+      return;
+    }
     // A row that needs a value must have one once it's been marked.
     const missingValues = data.items.filter(
       (it) => it.needsValue && draft.items[it.id]?.status && !draft.items[it.id]?.value?.trim()
@@ -525,6 +758,21 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
         .getElementById(`item-${missingValues[0].id}`)
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
+    }
+    // Missing / Replaced guards must answer their follow-up questions.
+    if (kind === "safety") {
+      const unanswered = data.items.filter((it) => followUpMissing(draft.items[it.id] ?? {}));
+      if (unanswered.length > 0) {
+        setError(
+          `Answer the follow-up question${unanswered.length === 1 ? "" : "s"} for ${unanswered.length} guard${
+            unanswered.length === 1 ? "" : "s"
+          } (highlighted in red).`
+        );
+        document
+          .getElementById(`item-${unanswered[0].id}`)
+          ?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
     }
     // Any item flagged as an Issue must carry a comment explaining it.
     const missingComments = data.items.filter(
@@ -565,14 +813,32 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
       revision: data.revision,
       operator: draft.operator.trim(),
       fields: draft.fields,
-      items: data.items.map((it) => {
+      items: items.map((it) => {
         const status = draft.items[it.id]?.status || "";
+        if (it.id === WATER_ITEM.id) {
+          // Fold both answers into the comment so every submission view shows them labeled.
+          return {
+            id: it.id,
+            text: it.text,
+            status,
+            photoUrl: status === "fail" ? capturedPhotos[it.id]?.url : undefined,
+            comment:
+              status === "fail"
+                ? `Source: ${water.value?.trim()} · Attempted resolutions / by whom: ${water.comment?.trim()} · Fixed: ${
+                    water.fixed === "no" ? "No — maintenance ticket sent" : "Yes"
+                  }`
+                : undefined,
+          };
+        }
         return {
           id: it.id,
           text: it.text,
           status,
           value: draft.items[it.id]?.value?.trim() || undefined,
-          comment: draft.items[it.id]?.comment?.trim() || undefined,
+          comment:
+            kind === "safety"
+              ? joinComment(draft.items[it.id]?.comment, followUpText(draft.items[it.id] ?? {}))
+              : draft.items[it.id]?.comment?.trim() || undefined,
           // Carry the defect photo only for X/R guards that captured one.
           photoUrl: status === "X" || status === "R" ? capturedPhotos[it.id]?.url : undefined,
         };
@@ -584,6 +850,48 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
     setSubmitting(true);
     try {
       const saved = await submitChecklist(payload);
+      // Water on floor not fixed → raise a maintenance ticket. Runs before the
+      // photo cleanup below so the server can copy the photo into the ticket.
+      let ticketErr: string | null = null;
+      if (kind === "line" && water.status === "fail" && water.fixed === "no") {
+        try {
+          await createMaintenanceTicket({
+            line: line.id,
+            lineName: data.name,
+            issue: "Water on floor",
+            source: water.value?.trim() || "",
+            attempted: water.comment?.trim() || "",
+            operator: draft.operator.trim(),
+            photoUrl: capturedPhotos[WATER_ITEM.id]?.url,
+            submissionId: saved.id,
+          });
+        } catch (e) {
+          ticketErr = e instanceof Error ? e.message : "unknown error";
+        }
+      }
+      // Guards: Broken / new guard needed → maintenance; not corrected → investigation.
+      if (kind === "safety") {
+        const r = await raiseGuardFollowUps({
+          line: line.id,
+          lineName: data.name,
+          by: draft.operator.trim(),
+          role: "operator",
+          submissionId: saved.id,
+          guards: data.items.map((it) => {
+            const st = draft.items[it.id] ?? {};
+            return {
+              itemId: it.id,
+              text: it.text,
+              status: st.status,
+              newGuard: st.newGuard,
+              corrected: st.corrected,
+              note: st.comment?.trim(),
+              photoUrl: capturedPhotos[it.id]?.url,
+            };
+          }),
+        });
+        if (r.failed.length) ticketErr = `could not send for: ${r.failed.join(", ")}`;
+      }
       // The server has now copied each X/R photo into the submission's own files.
       // Keep only X defects in the Defected Guards gallery; delete the rest (R
       // rides on the submission copy, anything else is an abandoned capture).
@@ -597,6 +905,11 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
       setOpenComments({});
       setTriedSubmit(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
+      if (ticketErr) {
+        // Stay on this tab so the operator sees it and can tell maintenance directly.
+        setError(`Checklist saved, but a maintenance ticket / investigation failed (${ticketErr}). Tell maintenance directly.`);
+        return;
+      }
       // After a Line Checklist is submitted, move the operator straight to the
       // Safety Guards tab for the same line (next step in the workflow).
       if (kind === "line") {
@@ -893,6 +1206,16 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
                   </div>
                 )}
 
+                {kind === "safety" && (
+                  <GuardFollowUp
+                    st={st}
+                    invalid={triedSubmit}
+                    onChange={(patch) =>
+                      setDraft((d) => ({ ...d, items: { ...d.items, [item.id]: { ...d.items[item.id], ...patch } } }))
+                    }
+                  />
+                )}
+
                 {kind === "safety" && expandedId === item.id && (
                   <GuardPhotoPanel
                     item={item}
@@ -909,6 +1232,76 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
             );
           })}
         </ul>
+
+        {kind === "line" && (
+          <div
+            id={`item-${WATER_ITEM.id}`}
+            className={`mt-2 rounded-md border shadow-sm transition-colors ${
+              water.status === "fail" ? ROW_TINT.red : water.status === "ok" ? ROW_TINT.green : ROW_TINT.none
+            }`}
+          >
+            <div className="flex items-center gap-2 px-2.5 py-1.5">
+              <Droplets className="h-4 w-4 flex-none text-sky-600" />
+              <span className="flex-1 text-xs font-semibold uppercase leading-tight">Water on floor?</span>
+              <button
+                onClick={() =>
+                  setDraft((d) => ({
+                    ...d,
+                    items: { ...d.items, [WATER_ITEM.id]: water.status === "ok" ? {} : { status: "ok" } },
+                  }))
+                }
+                className={`h-7 flex-none rounded-md border px-3 text-xs font-bold transition-colors ${
+                  water.status === "ok" ? BTN_ACTIVE.green : "border-input bg-card text-muted-foreground hover:bg-accent"
+                }`}
+              >
+                No
+              </button>
+              <button
+                onClick={() => setWaterOpen(true)}
+                className={`h-7 flex-none rounded-md border px-3 text-xs font-bold transition-colors ${
+                  water.status === "fail" ? BTN_ACTIVE.red : "border-input bg-card text-muted-foreground hover:bg-accent"
+                }`}
+              >
+                Yes
+              </button>
+            </div>
+            {water.status === "fail" && (
+              <button
+                onClick={() => setWaterOpen(true)}
+                className="block w-full border-t border-red-500/20 px-2.5 py-1.5 pl-[2.1rem] text-left text-xs"
+              >
+                <span className="block"><span className="font-semibold">Source:</span> {water.value}</span>
+                <span className="block">
+                  <span className="font-semibold">Attempted resolutions / by whom:</span> {water.comment}
+                </span>
+                <span className="block">
+                  <span className="font-semibold">Fixed:</span>{" "}
+                  {water.fixed === "no" ? (
+                    <span className="font-semibold text-red-600">No — maintenance ticket will be sent on submit</span>
+                  ) : (
+                    "Yes"
+                  )}
+                </span>
+                <span className="mt-0.5 block text-[11px] font-medium text-red-600 underline underline-offset-2">Edit</span>
+              </button>
+            )}
+            {water.status === "fail" && capturedPhotos[WATER_ITEM.id] && (
+              <div className="flex items-center gap-2 border-t border-red-500/20 px-2.5 py-1.5 pl-[2.1rem]">
+                <img
+                  src={capturedPhotos[WATER_ITEM.id].url}
+                  alt="Water on floor"
+                  className="h-16 w-auto rounded border border-border object-cover"
+                />
+                <button
+                  onClick={removeWaterPhoto}
+                  className="text-[11px] font-medium text-red-600 underline underline-offset-2"
+                >
+                  Remove photo
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Submit bar */}
@@ -942,6 +1335,30 @@ const ChecklistForm = ({ line, data, kind }: Props) => {
           confirmIcon={RotateCcw}
           onCancel={() => setConfirmReset(false)}
           onConfirm={reset}
+        />
+      )}
+
+      {waterOpen && (
+        <WaterDialog
+          source={water.value ?? ""}
+          resolution={water.comment ?? ""}
+          fixed={water.fixed}
+          photoUrl={capturedPhotos[WATER_ITEM.id]?.url}
+          photoBusy={waterPhotoBusy}
+          onCapturePhoto={captureWaterPhoto}
+          onRemovePhoto={removeWaterPhoto}
+          onCancel={() => {
+            if (water.status !== "fail") removeWaterPhoto();
+            setWaterOpen(false);
+          }}
+          onSave={(source, resolution, fixed) => {
+            setDraft((d) => ({
+              ...d,
+              items: { ...d.items, [WATER_ITEM.id]: { status: "fail", value: source, comment: resolution, fixed } },
+            }));
+            setWaterOpen(false);
+            setError(null);
+          }}
         />
       )}
 

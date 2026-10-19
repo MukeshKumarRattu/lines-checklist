@@ -1,0 +1,15 @@
+{
+  "name": "lines-checklist-server",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Local API + data store for Lines Checklist (separate from production_system). Swap for Supabase when moving to Lovable.",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "nodemailer": "^6.9.16"
+  }
+}
